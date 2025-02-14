@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>kuko</title>
-    <link>http://localhost:1313/</link>
+    <link>https://kuko-a.github.io/</link>
     <description>Recent content on kuko</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>shaolong.chen@outlook.it (Shaolong Chen)</managingEditor>
     <webMaster>shaolong.chen@outlook.it (Shaolong Chen)</webMaster>
     <lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kuko-a.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>个人blog的基本建立</title>
-      <link>http://localhost:1313/techology/first-post/</link>
+      <link>https://kuko-a.github.io/techology/first-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/techology/first-post/</guid>
+      <guid>https://kuko-a.github.io/techology/first-post/</guid>
       <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
 &lt;p&gt;感谢&lt;a href=&#34;https://blog.yuanji.dev/about/&#34;&gt;Yuanji&amp;rsquo;s Blog&lt;/a&gt;，他给了我建立blog的灵感。&lt;br&gt;
 花了两天时间自己摸索了一下blog的模式，跌跌撞撞的写了点东西，也算是一个新开端。&lt;/p&gt;
@@ -117,9 +117,9 @@ deepseek在整个过程中给予了我不少帮助，我相信未来肯定会衍
     </item>
     <item>
       <title>关于宅的感受</title>
-      <link>http://localhost:1313/life/second-post/</link>
+      <link>https://kuko-a.github.io/life/second-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/life/second-post/</guid>
+      <guid>https://kuko-a.github.io/life/second-post/</guid>
       <description>&lt;h3 id=&#34;经历&#34;&gt;经历&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
