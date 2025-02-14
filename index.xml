@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>kuko</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on kuko</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>shaolong.chen@outlook.it (Shaolong Chen)</managingEditor>
+    <webMaster>shaolong.chen@outlook.it (Shaolong Chen)</webMaster>
+    <lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>个人blog的基本建立</title>
+      <link>http://localhost:1313/techology/first-post/</link>
+      <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
+      <guid>http://localhost:1313/techology/first-post/</guid>
+      <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
+&lt;p&gt;感谢&lt;a href=&#34;https://blog.yuanji.dev/about/&#34;&gt;Yuanji&amp;rsquo;s Blog&lt;/a&gt;，他给了我建立blog的灵感。&lt;br&gt;
+花了两天时间自己摸索了一下blog的模式，跌跌撞撞的写了点东西，也算是一个新开端。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4 id=&#34;ai会给你答案&#34;&gt;ai会给你答案&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在不久的过去，想做一个属于自己的blog不难，但免不了劳神。但是现在ai为这个过程实现了巨大的提速。&lt;strong&gt;谁快，谁就领先。&lt;/strong&gt;&lt;br&gt;
+我试着用了一下春节期间的明星国产ai：deepseek，对比于我之前使用的chatgpt来讲，他们有共同的缺点就是服务器网络不太稳定。前者是在国内太过火爆，后者则是服务器不在国内。总而言之，他们给予我的震撼是无比附加的。&lt;br&gt;
+我在小时候有过这样的畅想：&lt;strong&gt;假如我有一个朋友，他无所不能且无话不说&lt;/strong&gt;，而现在ai扮演的就是这个角色。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4 id=&#34;blog建立的进程&#34;&gt;blog建立的进程&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;基本框架的构建&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;deepseek给我整合了很多开源的个人博客框架，我选择了hugo，他可以托管在github上面并且较为轻量化，对于云端的数据我往往更放心。&lt;br&gt;
+沿用ai的建议顺利安装了hugo之后，我在主题的应用上面绕了点弯路，但是最终还是成功导入了心仪的主题。我好像常常这样，在度过难关之后就会觉得之前的坎坷不值一提。我不太明白这到底是一种自谦还是自傲。&lt;br&gt;
+导入主题之后，我试着运行 hugo serve 并且在本地文档中编辑，然而并没有收到网页上的即时反馈。deepseek再次伸出援手，它给了我十余种可能出现的错误，排查到第七种网页路径问题时，我成功的在edge上看到了我编辑的实时状况。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;拓展衍生的问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;markdown文档的编写，hugo仅读取markdown格式的文档，而我之前仅仅接触过word的编辑，事实上我连word的应用也只懂些皮毛。b站上的markdown教程解决了这个问题，ai更倾向于给出一份标准答案而不是一份详解。起码在markdown的教学方面，deepseek仅仅是给我抛来一本厚重的新华词典，很难有人将它从头看到尾并且熟练背诵。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;主题的更换，我使用的simple主题是从hugo官网中直接引用的，我试着更换不同主题来实现相同文档的呈现，结果是出现了很多兼容问题。&lt;br&gt;
+我试着用paper主题来替换simple主题，但是poweshell无法运行hugo serve，报错显示是Google Analytics的错误，这次ai也没有帮我解决问题，原因在于我实际上并不刚需分析功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;仍旧遗留的问题&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;没有熟悉对主题的应用与改进，这就有关于编写，这是一个长期的进程，这需要我进行更为系统、长久的前端Web开发学习，我喜欢在&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Learn_web_development&#34;&gt;MDN&lt;/a&gt;上学习新东西。
+这是一个友好且有用的社区。&lt;br&gt;
+没有解决在github托管的问题，就先暂存在本地，争取在22号开学前实现个人blog的基础功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4 id=&#34;一些收获&#34;&gt;一些收获&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;写blog和编程不一样，bug可以明天再修，但是明天写的blog和今天写的blog无法混为一谈，而这是一件很酷的事情。&lt;br&gt;
+当一大段拉丁字母呈现在眼前时，English的学习重要性不言而喻。我在主题的学习使用过程中深有体会，simple并不是很复杂的存在，学会正确阅读使用说明书是一件了不起的事。&lt;br&gt;
+deepseek在整个过程中给予了我不少帮助，我相信未来肯定会衍生出更多的功能。在10年前没有人会想到移动电话会改变人的生活模式，我认为ai也一样拥有这样的潜力。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h4 id="写在前面">写在前面</h4>
+<p>感谢<a href="https://blog.yuanji.dev/about/">Yuanji&rsquo;s Blog</a>，他给了我建立blog的灵感。<br>
+花了两天时间自己摸索了一下blog的模式，跌跌撞撞的写了点东西，也算是一个新开端。</p>
+<hr>
+<ul>
+<li>
+<h4 id="ai会给你答案">ai会给你答案</h4>
+</li>
+</ul>
+<p>在不久的过去，想做一个属于自己的blog不难，但免不了劳神。但是现在ai为这个过程实现了巨大的提速。<strong>谁快，谁就领先。</strong><br>
+我试着用了一下春节期间的明星国产ai：deepseek，对比于我之前使用的chatgpt来讲，他们有共同的缺点就是服务器网络不太稳定。前者是在国内太过火爆，后者则是服务器不在国内。总而言之，他们给予我的震撼是无比附加的。<br>
+我在小时候有过这样的畅想：<strong>假如我有一个朋友，他无所不能且无话不说</strong>，而现在ai扮演的就是这个角色。</p>
+<ul>
+<li>
+<h4 id="blog建立的进程">blog建立的进程</h4>
+</li>
+</ul>
+<ol>
+<li>基本框架的构建</li>
+</ol>
+<p>deepseek给我整合了很多开源的个人博客框架，我选择了hugo，他可以托管在github上面并且较为轻量化，对于云端的数据我往往更放心。<br>
+沿用ai的建议顺利安装了hugo之后，我在主题的应用上面绕了点弯路，但是最终还是成功导入了心仪的主题。我好像常常这样，在度过难关之后就会觉得之前的坎坷不值一提。我不太明白这到底是一种自谦还是自傲。<br>
+导入主题之后，我试着运行 hugo serve 并且在本地文档中编辑，然而并没有收到网页上的即时反馈。deepseek再次伸出援手，它给了我十余种可能出现的错误，排查到第七种网页路径问题时，我成功的在edge上看到了我编辑的实时状况。</p>
+<ol start="2">
+<li>
+<p>拓展衍生的问题</p>
+<ul>
+<li>markdown文档的编写，hugo仅读取markdown格式的文档，而我之前仅仅接触过word的编辑，事实上我连word的应用也只懂些皮毛。b站上的markdown教程解决了这个问题，ai更倾向于给出一份标准答案而不是一份详解。起码在markdown的教学方面，deepseek仅仅是给我抛来一本厚重的新华词典，很难有人将它从头看到尾并且熟练背诵。</li>
+</ul>
+<ul>
+<li>主题的更换，我使用的simple主题是从hugo官网中直接引用的，我试着更换不同主题来实现相同文档的呈现，结果是出现了很多兼容问题。<br>
+我试着用paper主题来替换simple主题，但是poweshell无法运行hugo serve，报错显示是Google Analytics的错误，这次ai也没有帮我解决问题，原因在于我实际上并不刚需分析功能。</li>
+</ul>
+</li>
+<li>
+<p>仍旧遗留的问题</p>
+</li>
+</ol>
+<p>没有熟悉对主题的应用与改进，这就有关于编写，这是一个长期的进程，这需要我进行更为系统、长久的前端Web开发学习，我喜欢在<a href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development">MDN</a>上学习新东西。
+这是一个友好且有用的社区。<br>
+没有解决在github托管的问题，就先暂存在本地，争取在22号开学前实现个人blog的基础功能。</p>
+<ul>
+<li>
+<h4 id="一些收获">一些收获</h4>
+</li>
+</ul>
+<p>写blog和编程不一样，bug可以明天再修，但是明天写的blog和今天写的blog无法混为一谈，而这是一件很酷的事情。<br>
+当一大段拉丁字母呈现在眼前时，English的学习重要性不言而喻。我在主题的学习使用过程中深有体会，simple并不是很复杂的存在，学会正确阅读使用说明书是一件了不起的事。<br>
+deepseek在整个过程中给予了我不少帮助，我相信未来肯定会衍生出更多的功能。在10年前没有人会想到移动电话会改变人的生活模式，我认为ai也一样拥有这样的潜力。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>关于宅的感受</title>
+      <link>http://localhost:1313/life/second-post/</link>
+      <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
+      <guid>http://localhost:1313/life/second-post/</guid>
+      <description>&lt;h3 id=&#34;经历&#34;&gt;经历&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5 id=&#34;初次见面&#34;&gt;初次见面&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我差不多从小学四年级就开始接触漫画，其中&lt;a href=&#34;https://baike.baidu.com/item/%E9%98%BF%E8%A1%B0on%20line/9641348?fromModule=lemma_inlink&#34;&gt;《阿衰》&lt;/a&gt;和&lt;a href=&#34;https://baike.baidu.com/item/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9/8793748&#34;&gt;《偷星九月天》&lt;/a&gt;留给了我很深刻的印象，这是实体书给我的感觉。&lt;br&gt;
+就实体书的话，事实上我没有完整的读完这两部书，假使缘由是购买漫画书
+而不是教科书的话，没有多少父母会乐意去花钱做这种事情。然而高速发展的互联网技术让我在这方面没有拉下多少，我在智能手机上完整的看完了&lt;a href=&#34;https://baike.baidu.com/item/%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85/8702&#34;&gt;ナルト&lt;/a&gt;，这既是我文娱方向的第一次探索，也是我对网络世界的第一次触摸。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5 id=&#34;重拾记忆&#34;&gt;重拾记忆&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;虽然小学我对漫画稍有涉猎，但是却远远没有达到沉沦的地步。至于二次元动漫小人再次闯进我的生活就是高中时代了，我的一个同学是这方面的老手，我和他交谈甚欢，同时&lt;a href=&#34;https://baike.baidu.com/item/%E5%8E%9F%E7%A5%9E/23583622&#34;&gt;《原神》&lt;/a&gt;也在这一年开始了公开测试，我试着去玩了玩这个所谓的剑与魔法的世界。虽然整体体验并没有什么剑与魔法，但是这种新颖的样式吸引我继续玩到了现在。&lt;br&gt;
+与此同时，讲述青春故事的番剧也列上了我业余生活的名单。高中的课业也足够繁忙，我没有放弃看一些有趣的番剧，同弹幕一起享受着虚构的、美好的世界。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5 id=&#34;目前境遇&#34;&gt;目前境遇&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上了大学之后，我基本很少去专门搜索番剧去花时间去观看。接触了一些热门的&lt;a href=&#34;https://baike.baidu.com/item/GALgame/423361&#34;&gt;Galgame&lt;/a&gt;，总体的感觉是青春靓丽的，但是很难称得上是一种爱好，因为所要耗费的时间实在算不上短，在去年的暑期，我发现了vtuber这种职业，从业者依靠vtube stadio来控制自己的虚拟形象，也就是二次元动漫小人，使用自己的声音来“驾驶”这些虚拟形象，实现了直播的效果，所以观众们也可以通过弹幕的形式来实现与这个动漫小人，也就是和vtuber直接的实时互动。这种介于虚拟与现实之间的感觉很迷人，我现在仍然关注着这个行业，也有着固定看的人。我自我感觉目前很难去投入大段的时间去感悟事情，短时间的即时反馈在愉悦领域占有绝对的优势，在这其中被动的接受模式尤为吃香。直播刚好兼顾两头。&lt;/p&gt;
+&lt;h3 id=&#34;感受&#34;&gt;感受&lt;/h3&gt;
+&lt;p&gt;我算宅吗？或许不算，入宅和脱宅是人为的自我定义，二次元动漫小人也算是我的一种寄托，现在偶尔看看短篇漫画，看看vtuber小人在屏幕里面闹腾，看看缥缈的轻小说，现实生活有太多的事情要去花费大段的时间，很难去说虚拟与现实之间所相差的距离和美好的区别，但是比起虚拟的痛苦，现实的痛苦更加难熬。我会看动漫小人多久呢，我不清楚，所有人的时间是有限的，我希望未来能尽量去做自己感兴趣的事情和业务，学习更多的技术，在擅长的领域去做更多有趣的事情、创造更多的美好。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h3 id="经历">经历</h3>
+<ul>
+<li>
+<h5 id="初次见面">初次见面</h5>
+</li>
+</ul>
+<p>我差不多从小学四年级就开始接触漫画，其中<a href="https://baike.baidu.com/item/%E9%98%BF%E8%A1%B0on%20line/9641348?fromModule=lemma_inlink">《阿衰》</a>和<a href="https://baike.baidu.com/item/%E5%81%B7%E6%98%9F%E4%B9%9D%E6%9C%88%E5%A4%A9/8793748">《偷星九月天》</a>留给了我很深刻的印象，这是实体书给我的感觉。<br>
+就实体书的话，事实上我没有完整的读完这两部书，假使缘由是购买漫画书
+而不是教科书的话，没有多少父母会乐意去花钱做这种事情。然而高速发展的互联网技术让我在这方面没有拉下多少，我在智能手机上完整的看完了<a href="https://baike.baidu.com/item/%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85/8702">ナルト</a>，这既是我文娱方向的第一次探索，也是我对网络世界的第一次触摸。</p>
+<ul>
+<li>
+<h5 id="重拾记忆">重拾记忆</h5>
+</li>
+</ul>
+<p>虽然小学我对漫画稍有涉猎，但是却远远没有达到沉沦的地步。至于二次元动漫小人再次闯进我的生活就是高中时代了，我的一个同学是这方面的老手，我和他交谈甚欢，同时<a href="https://baike.baidu.com/item/%E5%8E%9F%E7%A5%9E/23583622">《原神》</a>也在这一年开始了公开测试，我试着去玩了玩这个所谓的剑与魔法的世界。虽然整体体验并没有什么剑与魔法，但是这种新颖的样式吸引我继续玩到了现在。<br>
+与此同时，讲述青春故事的番剧也列上了我业余生活的名单。高中的课业也足够繁忙，我没有放弃看一些有趣的番剧，同弹幕一起享受着虚构的、美好的世界。</p>
+<ul>
+<li>
+<h5 id="目前境遇">目前境遇</h5>
+</li>
+</ul>
+<p>上了大学之后，我基本很少去专门搜索番剧去花时间去观看。接触了一些热门的<a href="https://baike.baidu.com/item/GALgame/423361">Galgame</a>，总体的感觉是青春靓丽的，但是很难称得上是一种爱好，因为所要耗费的时间实在算不上短，在去年的暑期，我发现了vtuber这种职业，从业者依靠vtube stadio来控制自己的虚拟形象，也就是二次元动漫小人，使用自己的声音来“驾驶”这些虚拟形象，实现了直播的效果，所以观众们也可以通过弹幕的形式来实现与这个动漫小人，也就是和vtuber直接的实时互动。这种介于虚拟与现实之间的感觉很迷人，我现在仍然关注着这个行业，也有着固定看的人。我自我感觉目前很难去投入大段的时间去感悟事情，短时间的即时反馈在愉悦领域占有绝对的优势，在这其中被动的接受模式尤为吃香。直播刚好兼顾两头。</p>
+<h3 id="感受">感受</h3>
+<p>我算宅吗？或许不算，入宅和脱宅是人为的自我定义，二次元动漫小人也算是我的一种寄托，现在偶尔看看短篇漫画，看看vtuber小人在屏幕里面闹腾，看看缥缈的轻小说，现实生活有太多的事情要去花费大段的时间，很难去说虚拟与现实之间所相差的距离和美好的区别，但是比起虚拟的痛苦，现实的痛苦更加难熬。我会看动漫小人多久呢，我不清楚，所有人的时间是有限的，我希望未来能尽量去做自己感兴趣的事情和业务，学习更多的技术，在擅长的领域去做更多有趣的事情、创造更多的美好。</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
