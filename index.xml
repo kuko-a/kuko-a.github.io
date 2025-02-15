@@ -2,19 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>kuko</title>
-    <link>https://kuko-a.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on kuko</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>shaolong.chen@outlook.it (Shaolong Chen)</managingEditor>
     <webMaster>shaolong.chen@outlook.it (Shaolong Chen)</webMaster>
-    <lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kuko-a.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>对拿来主义的看法</title>
+      <link>http://localhost:1313/life/third-post/</link>
+      <pubDate>Sat, 15 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
+      <guid>http://localhost:1313/life/third-post/</guid>
+      <description>&lt;p&gt;获得想法&amp;ndash;&amp;gt;阅读文本&amp;ndash;&amp;gt;配置环境&amp;ndash;&amp;gt;搬运示例代码&amp;ndash;&amp;gt;修改代码，我陷入了死循环。&lt;/p&gt;
+&lt;h3 id=&#34;拿来主义&#34;&gt;拿来主义&lt;/h3&gt;
+&lt;p&gt;把blog托管在github云端之后，我有了一种如释重负的感觉，好像完成了一个大工程一样。我冷静下来想了想，实际上我什么也没有做。hugo不是我研发的，theme不是我架构的，markdown也是别人的设计的工具，我只是个拿来主义。&lt;br&gt;
+在巨人的肩膀上沾沾自喜不是一个技术人的作风，充其量也只算个脚本小子。但是很多网友告诉我，倘若你自己从头开始一个字母一个字母的造轮子，造一辈子都没有结果，更何况现在有了ai这个工具，你甚至不需要去自己敲代码都可以完成一些项目。实际上，确实如此，ai已经学习了几乎所有已公开的代码。&lt;br&gt;
+为什么会拿来主义呢？事实上，我认为所谓“拿来”就是学习的过程。就像没有人会去嘲弄小学生学习九九乘法表，也没有小学生会费心思去研究新的计算方法一样，因为计算今天的伙食费实在是用不上牛顿所研究的微积分。工具之所以拥有价值，是因为有人去使用它。也就是说，好用的工具、适合的方法都尽管去拿，这是一个学习的过程。&lt;/p&gt;
+&lt;h4 id=&#34;存在的问题&#34;&gt;存在的问题&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;知识付费问题：使用其他人的研究成果、享受其他人的服务，然后支付相应的费用，这是一种常识。2016年被称为知识付费元年，越来越多人乐意去支付金钱从而获得相应的服务。这是一种对他人劳动行为的尊重，然而互联网成立的初衷就是互联互享，有太多人乐意在他们的社区上分享技术，一起交流。在Google上随便键入一段代码报错，绝对会有人已经在很久之前给出解法。可见，目前知识付费在互联网上的形式大多流于服务付费。想去学习一门新的技术往往要去请一个好的先生来教，所支付的费用则是成了学费。知识付费很难去界定限度，也不可能去做到硬性要求。&lt;/li&gt;
+&lt;li&gt;思维惰性问题：学而不思则罔，一味的拿来别人的思考成果只会让我陷入懒惰的漩涡。这种问题很难去避免，因为现在网络上现成的代码实在是目不暇接，我的同学们在完成学校布置的任务时，有太多人直接复制粘贴网络上的答案然后提交，结果固然是好的，他们顺利通过了作业审查。这样的事情多了之后，很难再去建立从头敲代码的信心，学会去修改其他人的代码已经算是勤快的了。我也经常会在一些问题上面犯懒，但是如果把所有的问题都丢给其他人或者ai，那么这个坎永远也迈不过去。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;一些想法&#34;&gt;一些想法&lt;/h3&gt;
+&lt;p&gt;我在想着如何做一个好的拿来主义者，所以我在编写web代码之前，试着查看了万维网的工作原理。&lt;br&gt;
+在我读完文本之后，直观的感受是学到了一大堆的专有名词，有种在学习语文的实感。显然学习这些是个长久的事情，我认为我有必要去学习这些原理。遇到新问题直接去复制粘贴，直接去拿，是没有办法做到真正的学习。我建立我的blog的初衷也是去记录我的问题，希望我以后能对原理多加考虑，对原因多加思考。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>获得想法&ndash;&gt;阅读文本&ndash;&gt;配置环境&ndash;&gt;搬运示例代码&ndash;&gt;修改代码，我陷入了死循环。</p>
+<h3 id="拿来主义">拿来主义</h3>
+<p>把blog托管在github云端之后，我有了一种如释重负的感觉，好像完成了一个大工程一样。我冷静下来想了想，实际上我什么也没有做。hugo不是我研发的，theme不是我架构的，markdown也是别人的设计的工具，我只是个拿来主义。<br>
+在巨人的肩膀上沾沾自喜不是一个技术人的作风，充其量也只算个脚本小子。但是很多网友告诉我，倘若你自己从头开始一个字母一个字母的造轮子，造一辈子都没有结果，更何况现在有了ai这个工具，你甚至不需要去自己敲代码都可以完成一些项目。实际上，确实如此，ai已经学习了几乎所有已公开的代码。<br>
+为什么会拿来主义呢？事实上，我认为所谓“拿来”就是学习的过程。就像没有人会去嘲弄小学生学习九九乘法表，也没有小学生会费心思去研究新的计算方法一样，因为计算今天的伙食费实在是用不上牛顿所研究的微积分。工具之所以拥有价值，是因为有人去使用它。也就是说，好用的工具、适合的方法都尽管去拿，这是一个学习的过程。</p>
+<h4 id="存在的问题">存在的问题</h4>
+<ol>
+<li>知识付费问题：使用其他人的研究成果、享受其他人的服务，然后支付相应的费用，这是一种常识。2016年被称为知识付费元年，越来越多人乐意去支付金钱从而获得相应的服务。这是一种对他人劳动行为的尊重，然而互联网成立的初衷就是互联互享，有太多人乐意在他们的社区上分享技术，一起交流。在Google上随便键入一段代码报错，绝对会有人已经在很久之前给出解法。可见，目前知识付费在互联网上的形式大多流于服务付费。想去学习一门新的技术往往要去请一个好的先生来教，所支付的费用则是成了学费。知识付费很难去界定限度，也不可能去做到硬性要求。</li>
+<li>思维惰性问题：学而不思则罔，一味的拿来别人的思考成果只会让我陷入懒惰的漩涡。这种问题很难去避免，因为现在网络上现成的代码实在是目不暇接，我的同学们在完成学校布置的任务时，有太多人直接复制粘贴网络上的答案然后提交，结果固然是好的，他们顺利通过了作业审查。这样的事情多了之后，很难再去建立从头敲代码的信心，学会去修改其他人的代码已经算是勤快的了。我也经常会在一些问题上面犯懒，但是如果把所有的问题都丢给其他人或者ai，那么这个坎永远也迈不过去。</li>
+</ol>
+<h3 id="一些想法">一些想法</h3>
+<p>我在想着如何做一个好的拿来主义者，所以我在编写web代码之前，试着查看了万维网的工作原理。<br>
+在我读完文本之后，直观的感受是学到了一大堆的专有名词，有种在学习语文的实感。显然学习这些是个长久的事情，我认为我有必要去学习这些原理。遇到新问题直接去复制粘贴，直接去拿，是没有办法做到真正的学习。我建立我的blog的初衷也是去记录我的问题，希望我以后能对原理多加考虑，对原因多加思考。</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>个人blog的基本建立</title>
-      <link>https://kuko-a.github.io/techology/first-post/</link>
+      <link>http://localhost:1313/techology/first-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>https://kuko-a.github.io/techology/first-post/</guid>
+      <guid>http://localhost:1313/techology/first-post/</guid>
       <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
 &lt;p&gt;感谢&lt;a href=&#34;https://blog.yuanji.dev/about/&#34;&gt;Yuanji&amp;rsquo;s Blog&lt;/a&gt;，他给了我建立blog的灵感。&lt;br&gt;
 花了两天时间自己摸索了一下blog的模式，跌跌撞撞的写了点东西，也算是一个新开端。&lt;/p&gt;
@@ -117,9 +150,9 @@ deepseek在整个过程中给予了我不少帮助，我相信未来肯定会衍
     </item>
     <item>
       <title>关于宅的感受</title>
-      <link>https://kuko-a.github.io/life/second-post/</link>
+      <link>http://localhost:1313/life/second-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>https://kuko-a.github.io/life/second-post/</guid>
+      <guid>http://localhost:1313/life/second-post/</guid>
       <description>&lt;h3 id=&#34;经历&#34;&gt;经历&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
