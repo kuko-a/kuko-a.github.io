@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>markdown语法笔记&nbsp;|&nbsp;kuko</title>
+<meta
+  name="title"
+  content="markdown语法笔记"
+/>
+<meta
+  name="description"
+  content="markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。
+
+基础语法
+所用的markdown应用程序都支持基础语法元素，他们可以应付大多数情况下的日常所需元素。
+标题
+在文本前面加入#号创建标题，#的数量是标题的级别，最多为六级标题。
+这是一个六级标题。
+段落
+可以用空白行来隔开两个文本段落，或者在一行的末尾添加空格后来用回车键换行。
+空白行间距展示
+文本
+
+在加粗文本两侧各添加两个* 来实现加粗，斜体显示是各一个*，同时使用就使用三个*。
+
+粗体  斜体 粗斜体
+
+如果想显示原本用于格式化markdown文档的字符，在前面添加反斜杠\就可以正常显示。
+emoji表情需要使用相应的简码，这是简码列表,可以随时查看。
+
+列表
+在每个列表项前加入数字和英文点号，也可以加符号如-、*、&#43;创建，首行缩进实现嵌套。
+
+第一项
+第二项
+
+第一项
+第二项
+
+
+
+引用
+
+块引用时在段落前添加&gt;符号，采用&gt; &gt;符号来支持嵌套使用。
+
+
+引用一段话。
+
+引用一段话。
+
+代码引用时在内容两侧各添加`来实现，如果代码中已经包含反引号要用双反引号。
+
+printf(&quot;hello,world!&quot;);
+
+
+代码块引用时将每一行缩进一个制表符和两个空格。
+printf(&quot;hello,world!&quot;);
+printf(&quot;hello,world!&quot;); 
+
+
+
+链接
+
+超链接是用中括号[]后跟着()的模式实现，文本在前，链接在后。也可以在圆括号中的链接地址后面添加以空格分隔的&quot;&ldquo;来使鼠标悬停后出现标题文字，加粗时要在整体前后加*，代码格式则是在方括号中加反引号`。
+
+我的blog
+
+网址和Email地址需要用&lt; &gt;来将URL或者email地址变成链接。
+
+https://kuko-a.github.io/
+
+如果链接过多可以使用双中括号[][]的模式给链接编号，然后统一使用 [编号]: 的格式补充链接。
+
+[1]:https://kuko-a.github.io/
+
+图片的插入类似于链接，在中括号前需要加入!，图片链接放在圆括号中。给图片增加链接时给其整体括中括号，再添加圆括号。
+
+
+分割线
+创建分割线时在单独一行上使用三个或多个***，&mdash;，___，来实现。
+
+扩展语法
+一般情况下，通过向兼容的markdown处理器添加扩展来启用这些元素。
+表格
+
+建表使用三个或多个连字符（&mdash;）创建每列的标题，并使用管道（|）分隔每列。您可以选择在表的任一端添加管道。
+
+
+  
+      
+          标题1
+          标题2
+      
+  
+  
+      
+          内容1
+          内容3
+      
+      
+          内容2
+          内容4
+      
+  
+
+
+对齐对于表格中内容的格式对齐，在相应列的连字符左、右、两侧添加：来实现左侧、右侧或中心对齐。
+
+围栏代码块
+在代码之前和之后的行上使用三个反引号```或三个波浪号~~~，在首段符号后可以添加语言名称
+
+
+
+
+
+
+1printf(&#34;hello,world!&#34;);
+脚注
+脚注这里也类似于链接的操作，在方括号里1使用^和相应的数字，之后再去添加详解。
+标题编号
+对标题编号以便于直接链接到对应标题的位置，在标题相同行上用#标记后标明名称与序号并用大括号括起{#文本-序号}。
+链接时使用[标题名称](序号整体)来编辑。"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Shaolong Chen" />
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/techology/fourth-post/">
+  <meta property="og:site_name" content="kuko">
+  <meta property="og:title" content="markdown语法笔记">
+  <meta property="og:description" content="markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。
+基础语法 所用的markdown应用程序都支持基础语法元素，他们可以应付大多数情况下的日常所需元素。
+标题 在文本前面加入#号创建标题，#的数量是标题的级别，最多为六级标题。
+这是一个六级标题。 段落 可以用空白行来隔开两个文本段落，或者在一行的末尾添加空格后来用回车键换行。
+空白行间距展示
+文本 在加粗文本两侧各添加两个* 来实现加粗，斜体显示是各一个*，同时使用就使用三个*。 粗体 斜体 粗斜体
+如果想显示原本用于格式化markdown文档的字符，在前面添加反斜杠\就可以正常显示。 emoji表情需要使用相应的简码，这是简码列表,可以随时查看。 列表 在每个列表项前加入数字和英文点号，也可以加符号如-、*、&#43;创建，首行缩进实现嵌套。
+第一项 第二项 第一项 第二项 引用 块引用时在段落前添加&gt;符号，采用&gt; &gt;符号来支持嵌套使用。 引用一段话。
+引用一段话。
+代码引用时在内容两侧各添加`来实现，如果代码中已经包含反引号要用双反引号。 printf(&#34;hello,world!&#34;);
+代码块引用时将每一行缩进一个制表符和两个空格。
+printf(&#34;hello,world!&#34;);printf(&#34;hello,world!&#34;); 链接 超链接是用中括号[]后跟着()的模式实现，文本在前，链接在后。也可以在圆括号中的链接地址后面添加以空格分隔的&#34;“来使鼠标悬停后出现标题文字，加粗时要在整体前后加*，代码格式则是在方括号中加反引号`。 我的blog
+网址和Email地址需要用&lt; &gt;来将URL或者email地址变成链接。 https://kuko-a.github.io/
+如果链接过多可以使用双中括号[][]的模式给链接编号，然后统一使用 [编号]: 的格式补充链接。 [1]:https://kuko-a.github.io/
+图片的插入类似于链接，在中括号前需要加入!，图片链接放在圆括号中。给图片增加链接时给其整体括中括号，再添加圆括号。
+分割线 创建分割线时在单独一行上使用三个或多个***，—，___，来实现。
+扩展语法 一般情况下，通过向兼容的markdown处理器添加扩展来启用这些元素。
+表格 建表使用三个或多个连字符（—）创建每列的标题，并使用管道（|）分隔每列。您可以选择在表的任一端添加管道。 标题1 标题2 内容1 内容3 内容2 内容4 对齐对于表格中内容的格式对齐，在相应列的连字符左、右、两侧添加：来实现左侧、右侧或中心对齐。 围栏代码块 在代码之前和之后的行上使用三个反引号```或三个波浪号~~~，在首段符号后可以添加语言名称
+1printf(&#34;hello,world!&#34;); 脚注 脚注这里也类似于链接的操作，在方括号里1使用^和相应的数字，之后再去添加详解。
+标题编号 对标题编号以便于直接链接到对应标题的位置，在标题相同行上用#标记后标明名称与序号并用大括号括起{#文本-序号}。
+链接时使用[标题名称](序号整体)来编辑。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="techology">
+    <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="markdown语法笔记">
+  <meta name="twitter:description" content="markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。
+基础语法 所用的markdown应用程序都支持基础语法元素，他们可以应付大多数情况下的日常所需元素。
+标题 在文本前面加入#号创建标题，#的数量是标题的级别，最多为六级标题。
+这是一个六级标题。 段落 可以用空白行来隔开两个文本段落，或者在一行的末尾添加空格后来用回车键换行。
+空白行间距展示
+文本 在加粗文本两侧各添加两个* 来实现加粗，斜体显示是各一个*，同时使用就使用三个*。 粗体 斜体 粗斜体
+如果想显示原本用于格式化markdown文档的字符，在前面添加反斜杠\就可以正常显示。 emoji表情需要使用相应的简码，这是简码列表,可以随时查看。 列表 在每个列表项前加入数字和英文点号，也可以加符号如-、*、&#43;创建，首行缩进实现嵌套。
+第一项 第二项 第一项 第二项 引用 块引用时在段落前添加&gt;符号，采用&gt; &gt;符号来支持嵌套使用。 引用一段话。
+引用一段话。
+代码引用时在内容两侧各添加`来实现，如果代码中已经包含反引号要用双反引号。 printf(&#34;hello,world!&#34;);
+代码块引用时将每一行缩进一个制表符和两个空格。
+printf(&#34;hello,world!&#34;);printf(&#34;hello,world!&#34;); 链接 超链接是用中括号[]后跟着()的模式实现，文本在前，链接在后。也可以在圆括号中的链接地址后面添加以空格分隔的&#34;“来使鼠标悬停后出现标题文字，加粗时要在整体前后加*，代码格式则是在方括号中加反引号`。 我的blog
+网址和Email地址需要用&lt; &gt;来将URL或者email地址变成链接。 https://kuko-a.github.io/
+如果链接过多可以使用双中括号[][]的模式给链接编号，然后统一使用 [编号]: 的格式补充链接。 [1]:https://kuko-a.github.io/
+图片的插入类似于链接，在中括号前需要加入!，图片链接放在圆括号中。给图片增加链接时给其整体括中括号，再添加圆括号。
+分割线 创建分割线时在单独一行上使用三个或多个***，—，___，来实现。
+扩展语法 一般情况下，通过向兼容的markdown处理器添加扩展来启用这些元素。
+表格 建表使用三个或多个连字符（—）创建每列的标题，并使用管道（|）分隔每列。您可以选择在表的任一端添加管道。 标题1 标题2 内容1 内容3 内容2 内容4 对齐对于表格中内容的格式对齐，在相应列的连字符左、右、两侧添加：来实现左侧、右侧或中心对齐。 围栏代码块 在代码之前和之后的行上使用三个反引号```或三个波浪号~~~，在首段符号后可以添加语言名称
+1printf(&#34;hello,world!&#34;); 脚注 脚注这里也类似于链接的操作，在方括号里1使用^和相应的数字，之后再去添加详解。
+标题编号 对标题编号以便于直接链接到对应标题的位置，在标题相同行上用#标记后标明名称与序号并用大括号括起{#文本-序号}。
+链接时使用[标题名称](序号整体)来编辑。">
+
+
+
+
+
+  <meta itemprop="name" content="markdown语法笔记">
+  <meta itemprop="description" content="markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。
+基础语法 所用的markdown应用程序都支持基础语法元素，他们可以应付大多数情况下的日常所需元素。
+标题 在文本前面加入#号创建标题，#的数量是标题的级别，最多为六级标题。
+这是一个六级标题。 段落 可以用空白行来隔开两个文本段落，或者在一行的末尾添加空格后来用回车键换行。
+空白行间距展示
+文本 在加粗文本两侧各添加两个* 来实现加粗，斜体显示是各一个*，同时使用就使用三个*。 粗体 斜体 粗斜体
+如果想显示原本用于格式化markdown文档的字符，在前面添加反斜杠\就可以正常显示。 emoji表情需要使用相应的简码，这是简码列表,可以随时查看。 列表 在每个列表项前加入数字和英文点号，也可以加符号如-、*、&#43;创建，首行缩进实现嵌套。
+第一项 第二项 第一项 第二项 引用 块引用时在段落前添加&gt;符号，采用&gt; &gt;符号来支持嵌套使用。 引用一段话。
+引用一段话。
+代码引用时在内容两侧各添加`来实现，如果代码中已经包含反引号要用双反引号。 printf(&#34;hello,world!&#34;);
+代码块引用时将每一行缩进一个制表符和两个空格。
+printf(&#34;hello,world!&#34;);printf(&#34;hello,world!&#34;); 链接 超链接是用中括号[]后跟着()的模式实现，文本在前，链接在后。也可以在圆括号中的链接地址后面添加以空格分隔的&#34;“来使鼠标悬停后出现标题文字，加粗时要在整体前后加*，代码格式则是在方括号中加反引号`。 我的blog
+网址和Email地址需要用&lt; &gt;来将URL或者email地址变成链接。 https://kuko-a.github.io/
+如果链接过多可以使用双中括号[][]的模式给链接编号，然后统一使用 [编号]: 的格式补充链接。 [1]:https://kuko-a.github.io/
+图片的插入类似于链接，在中括号前需要加入!，图片链接放在圆括号中。给图片增加链接时给其整体括中括号，再添加圆括号。
+分割线 创建分割线时在单独一行上使用三个或多个***，—，___，来实现。
+扩展语法 一般情况下，通过向兼容的markdown处理器添加扩展来启用这些元素。
+表格 建表使用三个或多个连字符（—）创建每列的标题，并使用管道（|）分隔每列。您可以选择在表的任一端添加管道。 标题1 标题2 内容1 内容3 内容2 内容4 对齐对于表格中内容的格式对齐，在相应列的连字符左、右、两侧添加：来实现左侧、右侧或中心对齐。 围栏代码块 在代码之前和之后的行上使用三个反引号```或三个波浪号~~~，在首段符号后可以添加语言名称
+1printf(&#34;hello,world!&#34;); 脚注 脚注这里也类似于链接的操作，在方括号里1使用^和相应的数字，之后再去添加详解。
+标题编号 对标题编号以便于直接链接到对应标题的位置，在标题相同行上用#标记后标明名称与序号并用大括号括起{#文本-序号}。
+链接时使用[标题名称](序号整体)来编辑。">
+  <meta itemprop="datePublished" content="2025-02-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-02-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="78">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    
+    
+    <link href="/bundle.min.css" rel="stylesheet" />
+
+    
+
+    
+      <meta name="fediverse:creator" content="@chensl@mastodon.social" />
+    
+
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >主页</a
+  >
+
+  <a
+    href="/techology/"
+    
+    >技术</a
+  >
+
+  <a
+    href="/life/"
+    
+    >生活</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>markdown语法笔记</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <p>markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。</p>
+<hr>
+<h2 id="基础语法">基础语法</h2>
+<p>所用的markdown应用程序都支持基础语法元素，他们可以应付大多数情况下的日常所需元素。</p>
+<h3 id="标题">标题</h3>
+<p>在文本前面加入#号创建标题，#的数量是标题的级别，最多为六级标题。</p>
+<h6 id="这是一个六级标题">这是一个六级标题。</h6>
+<h3 id="段落">段落</h3>
+<p>可以用空白行来隔开两个文本段落，或者在一行的末尾添加空格后来用回车键换行。</p>
+<p>空白行间距展示</p>
+<h3 id="文本">文本</h3>
+<ul>
+<li>在加粗文本两侧各添加两个* 来实现加粗，斜体显示是各一个*，同时使用就使用三个*。</li>
+</ul>
+<p><strong>粗体</strong>  <em>斜体</em> <em><strong>粗斜体</strong></em></p>
+<ul>
+<li>如果想显示原本用于格式化markdown文档的字符，在前面添加反斜杠\就可以正常显示。</li>
+<li>emoji表情需要使用相应的简码，这是<a href="https://gist.github.com/rxaviers/7360908">简码列表</a>,可以随时查看。</li>
+</ul>
+<h3 id="列表">列表</h3>
+<p>在每个列表项前加入数字和英文点号，也可以加符号如-、*、+创建，首行缩进实现嵌套。</p>
+<ol>
+<li>第一项</li>
+<li>第二项
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+</ul>
+</li>
+</ol>
+<h3 id="引用">引用</h3>
+<ul>
+<li><strong>块</strong>引用时在段落前添加&gt;符号，采用&gt; &gt;符号来支持嵌套使用。</li>
+</ul>
+<blockquote>
+<p>引用一段话。</p>
+<blockquote>
+<p>引用一段话。</p></blockquote></blockquote>
+<ul>
+<li><strong>代码</strong>引用时在内容两侧各添加`来实现，如果代码中已经包含反引号要用双反引号。</li>
+</ul>
+<p><code>printf(&quot;hello,world!&quot;);</code></p>
+<ul>
+<li>
+<p><strong>代码块</strong>引用时将每一行缩进一个制表符和两个空格。</p>
+<pre><code>printf(&quot;hello,world!&quot;);
+printf(&quot;hello,world!&quot;); 
+</code></pre>
+</li>
+</ul>
+<h3 id="链接">链接</h3>
+<ul>
+<li><strong>超链接</strong>是用中括号[]后跟着()的模式实现，文本在前，链接在后。也可以在圆括号中的链接地址后面添加以空格分隔的&quot;&ldquo;来使鼠标悬停后出现标题文字，加粗时要在整体前后加*，代码格式则是在方括号中加反引号`。</li>
+</ul>
+<p><em><strong><a href="https://kuko-a.github.io/" title="使用双引号">我的blog</a></strong></em></p>
+<ul>
+<li><strong>网址和Email地址</strong>需要用&lt; &gt;来将URL或者email地址变成链接。</li>
+</ul>
+<p><a href="https://kuko-a.github.io/">https://kuko-a.github.io/</a></p>
+<ul>
+<li>如果链接过多可以使用双中括号[][]的模式给链接编号，然后统一使用 [编号]: 的格式补充链接。</li>
+</ul>
+<p>[1]:https://kuko-a.github.io/</p>
+<ul>
+<li><strong>图片</strong>的插入类似于链接，在中括号前需要加入!，图片链接放在圆括号中。给图片增加链接时给其整体括中括号，再添加圆括号。<br>
+<a href="https://kuko-a.github.io/"><img src="https://p.afbcs.cn/Gv64Ce" alt="picture"></a></li>
+</ul>
+<h3 id="分割线">分割线</h3>
+<p>创建分割线时在单独一行上使用三个或多个***，&mdash;，___，来实现。</p>
+<hr>
+<h2 id="扩展语法">扩展语法</h2>
+<p>一般情况下，通过向兼容的markdown处理器添加扩展来启用这些元素。</p>
+<h3 id="表格">表格</h3>
+<ul>
+<li><strong>建表</strong>使用三个或多个连字符（&mdash;）创建每列的标题，并使用管道（|）分隔每列。您可以选择在表的任一端添加管道。</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>标题1</th>
+          <th>标题2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>内容1</td>
+          <td>内容3</td>
+      </tr>
+      <tr>
+          <td>内容2</td>
+          <td>内容4</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>对齐</strong>对于表格中内容的格式对齐，在相应列的连字符左、右、两侧添加：来实现左侧、右侧或中心对齐。</li>
+</ul>
+<h3 id="围栏代码块">围栏代码块</h3>
+<p>在代码之前和之后的行上使用三个反引号```或三个波浪号~~~，在首段符号后可以添加语言名称</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;hello,world!&#34;</span>);</span></span></code></pre></div>
+<h3 id="脚注">脚注</h3>
+<p>脚注这里也类似于链接的操作，在方括号里<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>使用^和相应的数字，之后再去添加详解。</p>
+<h3 id="example-1">标题编号</h3>
+<p>对标题编号以便于直接链接到对应标题的位置，在标题相同行上用#标记后标明名称与序号并用大括号括起{#文本-序号}。<br>
+链接时使用[标题名称](序号整体)来编辑。</p>
+<p><a href="#example-1">标题编号</a></p>
+<h3 id="删除线">删除线</h3>
+<p>在文本的前后使用两个波浪号~实现。</p>
+<p><del>这是一段错误</del></p>
+<h3 id="复选框">复选框</h3>
+<p>在列表项前加破折号-和方括号[]，在方括号前加上空格。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 任务一</li>
+<li><input checked="" disabled="" type="checkbox"> 任务二</li>
+<li>[] 任务三</li>
+</ul>
+<h2 id="写在最后">写在最后</h2>
+<p>要把有用的部分放入technology模块之中，弄好生态很重要。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>这是一个脚注&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+  </content>
+  
+  
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
