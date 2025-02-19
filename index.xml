@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>kuko</title>
-    <link>http://localhost:53869/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on kuko</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>shaolong.chen@outlook.it (Shaolong Chen)</managingEditor>
     <webMaster>shaolong.chen@outlook.it (Shaolong Chen)</webMaster>
     <lastBuildDate>Wed, 19 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:53869/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初学git</title>
-      <link>http://localhost:53869/technology/git-post/</link>
+      <link>http://localhost:1313/technology/git-post/</link>
       <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:53869/technology/git-post/</guid>
+      <guid>http://localhost:1313/technology/git-post/</guid>
       <description>&lt;h3 id=&#34;写在前面&#34;&gt;写在前面&lt;/h3&gt;
 &lt;p&gt;为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。&lt;a href=&#34;https://git-scm.com/docs&#34;&gt;git&lt;/a&gt;官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得&lt;a href=&#34;https://liaoxuefeng.com/books/git/introduction/index.html&#34;&gt;廖雪峰&lt;/a&gt;和&lt;a href=&#34;https://www.runoob.com/git/git-tutorial.html&#34;&gt;菜鸟教程&lt;/a&gt;都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。&lt;/p&gt;
 &lt;hr&gt;
@@ -130,7 +130,7 @@ git和其他版本控制系统的区别是git跟踪并管理是修改并非文�
 <li><strong>删除标签</strong>，<code>git tag -d 名称</code>能删除在本地的标签。删除完本地标签后，<code>git push origin :refs/tags/名称</code>会删除远程库中的标签。</li>
 </ul>
 <h3 id="一些感想">一些感想</h3>
-<p>git是芬兰人Linus的杰作，实际上Linus仅仅用了两周时间完成了这个分布式版本控制系统的全部开发，可见这位芬兰人对于解决问题的执着和对技术的狂热。然而在我学习git的途中，最为佩服的其实并不是Linus无与伦比的编程技术，而佩服他基于技术自由和开放合作的精神。Linus最成功、最壮大的项目都是开源项目，这种强调自由共享和协作精神同共产主义的共享理念有着些许相通之处，这或许与他曾当选芬兰共产党中央委员会委员的父亲Nils Torvalds有关，但是Linus不是一位政治家，他只不过是在他擅长的领域去做他认为正确的事。明辨是非是所有成年人必须学会的一项技能。正如仁慈主义开展各种慈善晚会只是勉强遮掩社会贫困的真实根源一样，有很多事情需要自己的眼睛去看、自己的大脑去想，也没有必要上升到信仰的高度，仅仅做到言行合一，问心无愧已经算是成功。</p>
+<p>git是芬兰人Linus的杰作，实际上Linus仅仅用了两周时间完成了这个分布式版本控制系统的全部开发，可见Linus对于解决问题的执着和对技术的狂热。然而在我学习git的途中，最为佩服的其实并不是Linus无与伦比的编程技术，而佩服他基于技术自由和开放合作的精神。Linus最成功、最壮大的项目都是开源项目，这种强调自由共享和协作精神同共产主义的共享理念有着些许相通之处，这或许与他曾当选芬兰共产党中央委员会委员的父亲Nils Torvalds有关，但是Linus不是一位政治家，他只不过是在他擅长的领域去做他认为正确的事。明辨是非是所有成年人必须学会的一项技能。正如仁慈主义开展各种慈善晚会只是勉强遮掩社会贫困的真实根源一样，有很多事情需要自己的眼睛去看、自己的大脑去想，也没有必要上升到信仰的高度，仅仅做到言行合一，问心无愧已经算是成功。</p>
 <style>
 a {
   text-decoration: none;
@@ -138,9 +138,9 @@ a {
     </item>
     <item>
       <title>markdown语法笔记</title>
-      <link>http://localhost:53869/technology/fourth-post/</link>
+      <link>http://localhost:1313/technology/fourth-post/</link>
       <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:53869/technology/fourth-post/</guid>
+      <guid>http://localhost:1313/technology/fourth-post/</guid>
       <description>&lt;p&gt;markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;基础语法&#34;&gt;基础语法&lt;/h2&gt;
@@ -391,9 +391,9 @@ a {
     </item>
     <item>
       <title>对拿来主义的看法</title>
-      <link>http://localhost:53869/life/third-post/</link>
+      <link>http://localhost:1313/life/third-post/</link>
       <pubDate>Sat, 15 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:53869/life/third-post/</guid>
+      <guid>http://localhost:1313/life/third-post/</guid>
       <description>&lt;p&gt;获得想法&amp;ndash;&amp;gt;阅读文本&amp;ndash;&amp;gt;配置环境&amp;ndash;&amp;gt;搬运示例代码&amp;ndash;&amp;gt;修改代码，我陷入了死循环。&lt;/p&gt;
 &lt;h3 id=&#34;拿来主义&#34;&gt;拿来主义&lt;/h3&gt;
 &lt;p&gt;把blog托管在github云端之后，我有了一种如释重负的感觉，好像完成了一个大工程一样。我冷静下来想了想，实际上我什么也没有做。hugo不是我研发的，theme不是我架构的，markdown也是别人的设计的工具，我只是个拿来主义。&lt;br&gt;
@@ -424,9 +424,9 @@ a {
     </item>
     <item>
       <title>个人blog的基本建立</title>
-      <link>http://localhost:53869/life/first-post/</link>
+      <link>http://localhost:1313/life/first-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:53869/life/first-post/</guid>
+      <guid>http://localhost:1313/life/first-post/</guid>
       <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
 &lt;p&gt;感谢&lt;a href=&#34;https://blog.yuanji.dev/about/&#34;&gt;Yuanji&amp;rsquo;s Blog&lt;/a&gt;，他给了我建立blog的灵感。&lt;br&gt;
 花了两天时间自己摸索了一下blog的模式，跌跌撞撞的写了点东西，也算是一个新开端。&lt;/p&gt;
@@ -536,9 +536,9 @@ a {
     </item>
     <item>
       <title>关于宅的感受</title>
-      <link>http://localhost:53869/life/second-post/</link>
+      <link>http://localhost:1313/life/second-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:53869/life/second-post/</guid>
+      <guid>http://localhost:1313/life/second-post/</guid>
       <description>&lt;h3 id=&#34;经历&#34;&gt;经历&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
