@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=53869&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>初学git&nbsp;|&nbsp;kuko</title>
+<meta
+  name="title"
+  content="初学git"
+/>
+<meta
+  name="description"
+  content="写在前面
+为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。git官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得廖雪峰和菜鸟教程都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。
+
+环境配置
+git config命令可以配置或读取相应的工作环境变量，它决定了git在各个环节的工作方式与行为。
+在使用git时需要先进行
+
+
+
+
+
+
+git config --global user.name &#34;kuko&#34;
+git config --global usre.email kuko2975245568@gamil.com
+这两行命令配置了个人的用户名称和电子邮箱地址，--global选项定义了计算机上所有的git仓库，去掉的话则会把新个人信息保存在当前项目的.git/config文件之中。
+除去必须定义的用户信息外，默认的文本编辑器和差异分析工具均可以进行二次配置，配置完成后可以使用git config --list来检查已有的配置信息。
+基本逻辑概念
+git通过工作区，暂存区，版本库，远程仓库来实现对数据的管理控制。
+工作区
+在电脑中能直接看到的目录成为工作区，用于在本地进行所需要的代码开发。这些代码还未纳入到被记录的版本控制中。
+暂存库
+暂存库是.git下的临时存储区域，保存了已经add过的文件，这些文件在下一次commit时会被全部提交至版本库中。  
+git和其他版本控制系统的区别是git跟踪并管理是修改并非文件，每次的add是修改本身，也就是说每次的add相当于一次快照。
+版本库
+在工作区下有着一个隐藏的目录.git，它就是git的版本库，里面主要包含了index、master、指向master的指针head。每次的提交commit都会在版本库中创建新的快照，他提供了项目完整历史记录的各个节点。
+远程仓库
+用24小时开机的机器充当服务器的角色，其他人可以不断从这个仓库中克隆新版本并且向他提交自己的推送，在github上可以创建一个git仓库来充当远程仓库。
+基本操作
+
+创建一个版本库，git init把相应目录变成git可以实现管理的仓库。git add 可以将文件逐个添加到暂存区，之后使用git commit -m &quot;注释&quot;将文件全部提交到版本库。
+查看库中状态，git status可以查看什么文件发生了变化，git diff 文件可以给出文件具体改动的内容。
+版本回溯，git log可以显示从最近到最远的提交日志，想要回退到某个版本就得用git reset 参数 版本号，参数中的&ndash;hard会回退到已提交状态，&ndash;soft会回退到未提交状态，&ndash;mixed会回退到已添加但未提交的状态。在git中HEAD指向当前版本HEAD^是上个版本以此类推，如果^太多可以使用HEAD~100的形式。git reflog可以打开命令历史，从而找到回退之前的commit id，这样就能reset回去了。实际上commit id不用写完，写前几位就可以自动索引到。
+撤销修改，git checkout --文件可以实现文件在工作区的修改撤销，如果修改存在于add之前会撤销到和版本库一样的状态，修改存在于add之后就会回到add之后的状态。git reset HEAD 文件可以将暂存区的修改回退到工作区，此处的HEAD代表最新的版本。
+删除文件，rm 文件的作用和把文件放入回收站的效果一样，这时工作区里就没有了文件，git rm 文件可以删除版本库中的文件，再次commit更新删除效果。
+忽略文件，编写一个.gitgnore文件放在git工作区的根目录下，git将会自动忽略这些文件
+
+Github相关
+
+关联github上的远程仓库，git remote add origin git@github.com：GitHub账户名/仓库名.git通常这个命令在github建立远程仓库时自己生成的，origin是默认的远程库的名字。
+推送到github上的远程库，git push -u origin master首次的push后面的-u参数使得本地master和远程master相关联，后续可以直接使用。
+删除远程库，git remote rm 仓库名可以解除本地和远程库的关联。git remote -v用来查看远程库的信息。
+克隆远程库，git clone repsitory-url通过复制的网址即可把远程库中的文件克隆到本地目录。
+
+分支管理
+git通过创建不同的分支来实现不同项目的各自开发，各分支可以进行合并。"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Shaolong Chen" />
+
+
+
+
+<meta property="og:url" content="http://localhost:53869/technology/git-post/">
+  <meta property="og:site_name" content="kuko">
+  <meta property="og:title" content="初学git">
+  <meta property="og:description" content="写在前面 为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。git官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得廖雪峰和菜鸟教程都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。
+环境配置 git config命令可以配置或读取相应的工作环境变量，它决定了git在各个环节的工作方式与行为。
+在使用git时需要先进行
+git config --global user.name &#34;kuko&#34;git config --global usre.email kuko2975245568@gamil.com 这两行命令配置了个人的用户名称和电子邮箱地址，--global选项定义了计算机上所有的git仓库，去掉的话则会把新个人信息保存在当前项目的.git/config文件之中。
+除去必须定义的用户信息外，默认的文本编辑器和差异分析工具均可以进行二次配置，配置完成后可以使用git config --list来检查已有的配置信息。
+基本逻辑概念 git通过工作区，暂存区，版本库，远程仓库来实现对数据的管理控制。
+工作区 在电脑中能直接看到的目录成为工作区，用于在本地进行所需要的代码开发。这些代码还未纳入到被记录的版本控制中。
+暂存库 暂存库是.git下的临时存储区域，保存了已经add过的文件，这些文件在下一次commit时会被全部提交至版本库中。 git和其他版本控制系统的区别是git跟踪并管理是修改并非文件，每次的add是修改本身，也就是说每次的add相当于一次快照。
+版本库 在工作区下有着一个隐藏的目录.git，它就是git的版本库，里面主要包含了index、master、指向master的指针head。每次的提交commit都会在版本库中创建新的快照，他提供了项目完整历史记录的各个节点。
+远程仓库 用24小时开机的机器充当服务器的角色，其他人可以不断从这个仓库中克隆新版本并且向他提交自己的推送，在github上可以创建一个git仓库来充当远程仓库。
+基本操作 创建一个版本库，git init把相应目录变成git可以实现管理的仓库。git add 可以将文件逐个添加到暂存区，之后使用git commit -m &#34;注释&#34;将文件全部提交到版本库。 查看库中状态，git status可以查看什么文件发生了变化，git diff 文件可以给出文件具体改动的内容。 版本回溯，git log可以显示从最近到最远的提交日志，想要回退到某个版本就得用git reset 参数 版本号，参数中的–hard会回退到已提交状态，–soft会回退到未提交状态，–mixed会回退到已添加但未提交的状态。在git中HEAD指向当前版本HEAD^是上个版本以此类推，如果^太多可以使用HEAD~100的形式。git reflog可以打开命令历史，从而找到回退之前的commit id，这样就能reset回去了。实际上commit id不用写完，写前几位就可以自动索引到。 撤销修改，git checkout --文件可以实现文件在工作区的修改撤销，如果修改存在于add之前会撤销到和版本库一样的状态，修改存在于add之后就会回到add之后的状态。git reset HEAD 文件可以将暂存区的修改回退到工作区，此处的HEAD代表最新的版本。 删除文件，rm 文件的作用和把文件放入回收站的效果一样，这时工作区里就没有了文件，git rm 文件可以删除版本库中的文件，再次commit更新删除效果。 忽略文件，编写一个.gitgnore文件放在git工作区的根目录下，git将会自动忽略这些文件 Github相关 关联github上的远程仓库，git remote add origin git@github.com：GitHub账户名/仓库名.git通常这个命令在github建立远程仓库时自己生成的，origin是默认的远程库的名字。 推送到github上的远程库，git push -u origin master首次的push后面的-u参数使得本地master和远程master相关联，后续可以直接使用。 删除远程库，git remote rm 仓库名可以解除本地和远程库的关联。git remote -v用来查看远程库的信息。 克隆远程库，git clone repsitory-url通过复制的网址即可把远程库中的文件克隆到本地目录。 分支管理 git通过创建不同的分支来实现不同项目的各自开发，各分支可以进行合并。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="technology">
+    <meta property="article:published_time" content="2025-02-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-19T00:00:00+00:00">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="初学git">
+  <meta name="twitter:description" content="写在前面 为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。git官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得廖雪峰和菜鸟教程都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。
+环境配置 git config命令可以配置或读取相应的工作环境变量，它决定了git在各个环节的工作方式与行为。
+在使用git时需要先进行
+git config --global user.name &#34;kuko&#34;git config --global usre.email kuko2975245568@gamil.com 这两行命令配置了个人的用户名称和电子邮箱地址，--global选项定义了计算机上所有的git仓库，去掉的话则会把新个人信息保存在当前项目的.git/config文件之中。
+除去必须定义的用户信息外，默认的文本编辑器和差异分析工具均可以进行二次配置，配置完成后可以使用git config --list来检查已有的配置信息。
+基本逻辑概念 git通过工作区，暂存区，版本库，远程仓库来实现对数据的管理控制。
+工作区 在电脑中能直接看到的目录成为工作区，用于在本地进行所需要的代码开发。这些代码还未纳入到被记录的版本控制中。
+暂存库 暂存库是.git下的临时存储区域，保存了已经add过的文件，这些文件在下一次commit时会被全部提交至版本库中。 git和其他版本控制系统的区别是git跟踪并管理是修改并非文件，每次的add是修改本身，也就是说每次的add相当于一次快照。
+版本库 在工作区下有着一个隐藏的目录.git，它就是git的版本库，里面主要包含了index、master、指向master的指针head。每次的提交commit都会在版本库中创建新的快照，他提供了项目完整历史记录的各个节点。
+远程仓库 用24小时开机的机器充当服务器的角色，其他人可以不断从这个仓库中克隆新版本并且向他提交自己的推送，在github上可以创建一个git仓库来充当远程仓库。
+基本操作 创建一个版本库，git init把相应目录变成git可以实现管理的仓库。git add 可以将文件逐个添加到暂存区，之后使用git commit -m &#34;注释&#34;将文件全部提交到版本库。 查看库中状态，git status可以查看什么文件发生了变化，git diff 文件可以给出文件具体改动的内容。 版本回溯，git log可以显示从最近到最远的提交日志，想要回退到某个版本就得用git reset 参数 版本号，参数中的–hard会回退到已提交状态，–soft会回退到未提交状态，–mixed会回退到已添加但未提交的状态。在git中HEAD指向当前版本HEAD^是上个版本以此类推，如果^太多可以使用HEAD~100的形式。git reflog可以打开命令历史，从而找到回退之前的commit id，这样就能reset回去了。实际上commit id不用写完，写前几位就可以自动索引到。 撤销修改，git checkout --文件可以实现文件在工作区的修改撤销，如果修改存在于add之前会撤销到和版本库一样的状态，修改存在于add之后就会回到add之后的状态。git reset HEAD 文件可以将暂存区的修改回退到工作区，此处的HEAD代表最新的版本。 删除文件，rm 文件的作用和把文件放入回收站的效果一样，这时工作区里就没有了文件，git rm 文件可以删除版本库中的文件，再次commit更新删除效果。 忽略文件，编写一个.gitgnore文件放在git工作区的根目录下，git将会自动忽略这些文件 Github相关 关联github上的远程仓库，git remote add origin git@github.com：GitHub账户名/仓库名.git通常这个命令在github建立远程仓库时自己生成的，origin是默认的远程库的名字。 推送到github上的远程库，git push -u origin master首次的push后面的-u参数使得本地master和远程master相关联，后续可以直接使用。 删除远程库，git remote rm 仓库名可以解除本地和远程库的关联。git remote -v用来查看远程库的信息。 克隆远程库，git clone repsitory-url通过复制的网址即可把远程库中的文件克隆到本地目录。 分支管理 git通过创建不同的分支来实现不同项目的各自开发，各分支可以进行合并。">
+
+
+
+
+
+  <meta itemprop="name" content="初学git">
+  <meta itemprop="description" content="写在前面 为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。git官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得廖雪峰和菜鸟教程都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。
+环境配置 git config命令可以配置或读取相应的工作环境变量，它决定了git在各个环节的工作方式与行为。
+在使用git时需要先进行
+git config --global user.name &#34;kuko&#34;git config --global usre.email kuko2975245568@gamil.com 这两行命令配置了个人的用户名称和电子邮箱地址，--global选项定义了计算机上所有的git仓库，去掉的话则会把新个人信息保存在当前项目的.git/config文件之中。
+除去必须定义的用户信息外，默认的文本编辑器和差异分析工具均可以进行二次配置，配置完成后可以使用git config --list来检查已有的配置信息。
+基本逻辑概念 git通过工作区，暂存区，版本库，远程仓库来实现对数据的管理控制。
+工作区 在电脑中能直接看到的目录成为工作区，用于在本地进行所需要的代码开发。这些代码还未纳入到被记录的版本控制中。
+暂存库 暂存库是.git下的临时存储区域，保存了已经add过的文件，这些文件在下一次commit时会被全部提交至版本库中。 git和其他版本控制系统的区别是git跟踪并管理是修改并非文件，每次的add是修改本身，也就是说每次的add相当于一次快照。
+版本库 在工作区下有着一个隐藏的目录.git，它就是git的版本库，里面主要包含了index、master、指向master的指针head。每次的提交commit都会在版本库中创建新的快照，他提供了项目完整历史记录的各个节点。
+远程仓库 用24小时开机的机器充当服务器的角色，其他人可以不断从这个仓库中克隆新版本并且向他提交自己的推送，在github上可以创建一个git仓库来充当远程仓库。
+基本操作 创建一个版本库，git init把相应目录变成git可以实现管理的仓库。git add 可以将文件逐个添加到暂存区，之后使用git commit -m &#34;注释&#34;将文件全部提交到版本库。 查看库中状态，git status可以查看什么文件发生了变化，git diff 文件可以给出文件具体改动的内容。 版本回溯，git log可以显示从最近到最远的提交日志，想要回退到某个版本就得用git reset 参数 版本号，参数中的–hard会回退到已提交状态，–soft会回退到未提交状态，–mixed会回退到已添加但未提交的状态。在git中HEAD指向当前版本HEAD^是上个版本以此类推，如果^太多可以使用HEAD~100的形式。git reflog可以打开命令历史，从而找到回退之前的commit id，这样就能reset回去了。实际上commit id不用写完，写前几位就可以自动索引到。 撤销修改，git checkout --文件可以实现文件在工作区的修改撤销，如果修改存在于add之前会撤销到和版本库一样的状态，修改存在于add之后就会回到add之后的状态。git reset HEAD 文件可以将暂存区的修改回退到工作区，此处的HEAD代表最新的版本。 删除文件，rm 文件的作用和把文件放入回收站的效果一样，这时工作区里就没有了文件，git rm 文件可以删除版本库中的文件，再次commit更新删除效果。 忽略文件，编写一个.gitgnore文件放在git工作区的根目录下，git将会自动忽略这些文件 Github相关 关联github上的远程仓库，git remote add origin git@github.com：GitHub账户名/仓库名.git通常这个命令在github建立远程仓库时自己生成的，origin是默认的远程库的名字。 推送到github上的远程库，git push -u origin master首次的push后面的-u参数使得本地master和远程master相关联，后续可以直接使用。 删除远程库，git remote rm 仓库名可以解除本地和远程库的关联。git remote -v用来查看远程库的信息。 克隆远程库，git clone repsitory-url通过复制的网址即可把远程库中的文件克隆到本地目录。 分支管理 git通过创建不同的分支来实现不同项目的各自开发，各分支可以进行合并。">
+  <meta itemprop="datePublished" content="2025-02-19T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-02-19T00:00:00+00:00">
+  <meta itemprop="wordCount" content="156">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    
+    
+    <link href="/bundle.min.css" rel="stylesheet" />
+
+    
+
+    
+      <meta name="fediverse:creator" content="@chensl@mastodon.social" />
+    
+
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >主页</a
+  >
+
+  <a
+    href="/technology/"
+    
+    >技术</a
+  >
+
+  <a
+    href="/life/"
+    
+    >生活</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>初学git</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <h3 id="写在前面">写在前面</h3>
+<p>为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。<a href="https://git-scm.com/docs">git</a>官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得<a href="https://liaoxuefeng.com/books/git/introduction/index.html">廖雪峰</a>和<a href="https://www.runoob.com/git/git-tutorial.html">菜鸟教程</a>都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。</p>
+<hr>
+<h3 id="环境配置">环境配置</h3>
+<p><code>git config</code>命令可以配置或读取相应的工作环境变量，它决定了git在各个环节的工作方式与行为。<br>
+在使用git时需要先进行</p>
+
+
+
+
+
+
+<pre tabindex="0"><code>git config --global user.name &#34;kuko&#34;
+git config --global usre.email kuko2975245568@gamil.com</code></pre>
+<p>这两行命令配置了个人的用户名称和电子邮箱地址，<code>--global</code>选项定义了计算机上所有的git仓库，去掉的话则会把新个人信息保存在当前项目的.git/config文件之中。<br>
+除去必须定义的用户信息外，默认的文本编辑器和差异分析工具均可以进行二次配置，配置完成后可以使用<code>git config --list</code>来检查已有的配置信息。</p>
+<h3 id="基本逻辑概念">基本逻辑概念</h3>
+<p>git通过<strong>工作区</strong>，<strong>暂存区</strong>，<strong>版本库</strong>，<strong>远程仓库</strong>来实现对数据的管理控制。</p>
+<h4 id="工作区">工作区</h4>
+<p>在电脑中能直接看到的目录成为工作区，用于在本地进行所需要的代码开发。这些代码还未纳入到被记录的版本控制中。</p>
+<h4 id="暂存库">暂存库</h4>
+<p>暂存库是<code>.git</code>下的临时存储区域，保存了已经add过的文件，这些文件在下一次commit时会被全部提交至版本库中。  <br>
+git和其他版本控制系统的区别是git跟踪并管理是修改并非文件，每次的add是修改本身，也就是说每次的add相当于一次快照。</p>
+<h4 id="版本库">版本库</h4>
+<p>在工作区下有着一个隐藏的目录<code>.git</code>，它就是git的版本库，里面主要包含了index、master、指向master的指针head。每次的提交commit都会在版本库中创建新的快照，他提供了项目完整历史记录的各个节点。</p>
+<h4 id="远程仓库">远程仓库</h4>
+<p>用24小时开机的机器充当服务器的角色，其他人可以不断从这个仓库中克隆新版本并且向他提交自己的推送，在github上可以创建一个git仓库来充当远程仓库。</p>
+<h3 id="基本操作">基本操作</h3>
+<ul>
+<li><strong>创建一个版本库</strong>，<code>git init</code>把相应目录变成git可以实现管理的仓库。<code>git add </code>可以将文件逐个添加到暂存区，之后使用<code>git commit -m &quot;注释&quot;</code>将文件全部提交到版本库。</li>
+<li><strong>查看库中状态</strong>，<code>git status</code>可以查看什么文件发生了变化，<code>git diff 文件</code>可以给出文件具体改动的内容。</li>
+<li><strong>版本回溯</strong>，<code>git log</code>可以显示从最近到最远的提交日志，想要回退到某个版本就得用<code>git reset 参数 版本号</code>，参数中的&ndash;hard会回退到已提交状态，&ndash;soft会回退到未提交状态，&ndash;mixed会回退到已添加但未提交的状态。在git中HEAD指向当前版本HEAD^是上个版本以此类推，如果^太多可以使用HEAD~100的形式。<code>git reflog</code>可以打开命令历史，从而找到回退之前的commit id，这样就能reset回去了。实际上commit id不用写完，写前几位就可以自动索引到。</li>
+<li><strong>撤销修改</strong>，<code>git checkout --文件</code>可以实现文件在工作区的修改撤销，如果修改存在于add之前会撤销到和版本库一样的状态，修改存在于add之后就会回到add之后的状态。<code>git reset HEAD 文件</code>可以将暂存区的修改回退到工作区，此处的HEAD代表最新的版本。</li>
+<li><strong>删除文件</strong>，<code>rm 文件</code>的作用和把文件放入回收站的效果一样，这时工作区里就没有了文件，<code>git rm 文件</code>可以删除版本库中的文件，再次commit更新删除效果。</li>
+<li>忽略文件，编写一个.gitgnore文件放在git工作区的根目录下，git将会自动忽略这些文件</li>
+</ul>
+<h3 id="github相关">Github相关</h3>
+<ul>
+<li><strong>关联github上的远程仓库</strong>，<code>git remote add origin git@github.com：GitHub账户名/仓库名.git</code>通常这个命令在github建立远程仓库时自己生成的，origin是默认的远程库的名字。</li>
+<li><strong>推送到github上的远程库</strong>，<code>git push -u origin master</code>首次的push后面的-u参数使得本地master和远程master相关联，后续可以直接使用。</li>
+<li><strong>删除远程库</strong>，<code>git remote rm 仓库名</code>可以解除本地和远程库的关联。<code>git remote -v</code>用来查看远程库的信息。</li>
+<li><strong>克隆远程库</strong>，<code>git clone repsitory-url</code>通过复制的网址即可把远程库中的文件克隆到本地目录。</li>
+</ul>
+<h3 id="分支管理">分支管理</h3>
+<p>git通过创建不同的分支来实现不同项目的各自开发，各分支可以进行合并。</p>
+<ul>
+<li><strong>创建分支</strong>，<code>git branch 分支名</code>能新增一个指针默认名dev，<code>git checkout dev</code>会将HEAD的指向切换到dev上，之后工作区的修改和提交都是针对dev分支，master指针会留着原地不变。</li>
+<li><strong>查看当前分支</strong>，<code>git branch</code>会列出所有分支，并在当前分支前标记*号。</li>
+<li><strong>合并分支</strong>，<code>git merge 分支名</code>会将指定的分支合并到当前的分支并不留下痕迹<code>git merge --no-ff -m&quot;注释&quot; 分支名</code>会禁用fast forward，在分支历史上可以看出分支信息。</li>
+<li><strong>部分合并</strong>，<code>git cherry-pick 版本号</code>可以复制这个版本号下的特定提交到当前的分支。</li>
+<li><strong>删除分支</strong>，<code>git branch -d 分支名</code>可以删除指定的分支，一般在合并完后使用。<code>git branch -D 分支名</code>强行删除未合并的分支。</li>
+<li><strong>冲突处理</strong>，当不同的分支处理了相同的文件时，合并分支会出现错误，此时需要查看冲突的文件并在工作区实现手动处理修正。</li>
+<li><strong>储存当前环境</strong>，<code>git stash</code>会存储当前的工作区，<code>git stash list</code>查看储存的内容，<code>git stash apply 文件名</code>将储存的内容恢复到工作区，<code>git stash drop</code>用来删除stash的内容，<code>git stash pop</code>实现恢复和删除。</li>
+</ul>
+<h3 id="协作问题">协作问题</h3>
+<p>合作开发时，所有人会往master和dev分支上推送各自的修改，当相同的文件受到不同的修改时，后者的推送会出现错误。</p>
+<ul>
+<li><strong>获取最新版本</strong>，优先使用 <code>git pull</code>把最新的版本抓取下来，也就是<code>git fetch</code>和<code>git merge</code>的简化代码。抓取失败时需要指定本地dev分支与远程origin/dev分支的链接。</li>
+<li><strong>合并和推送</strong>，将最新版本与本地版本合并后推送，如果有冲突就需要进行冲突处理再向上推送。</li>
+<li><strong>变基</strong>，<code>git base</code>会实现分叉的提交历史整理成一条直线，多人的协作往往会使得提交历史乱七八糟。</li>
+</ul>
+<h3 id="标签管理">标签管理</h3>
+<p>tag的作用是和commit相绑定，毕竟乱七八糟的数字不好找。</p>
+<ul>
+<li><strong>创建标签</strong>，<code>git tag 名称</code>就可以在此分支上打一个新标签。<code>git tag 名称 版本号</code>可以对指定的commit id新打一个tag。</li>
+<li><strong>查看标签</strong>，<code>git tag</code>可以查看所有的标签。</li>
+<li><strong>推送标签</strong>，<code>git push origin --tags</code>推送所有标签给远程库。</li>
+<li><strong>删除标签</strong>，<code>git tag -d 名称</code>能删除在本地的标签。删除完本地标签后，<code>git push origin :refs/tags/名称</code>会删除远程库中的标签。</li>
+</ul>
+<h3 id="一些感想">一些感想</h3>
+<p>git是芬兰人Linus的杰作，实际上Linus仅仅用了两周时间完成了这个分布式版本控制系统的全部开发，可见这位芬兰人对于解决问题的执着和对技术的狂热。然而在我学习git的途中，最为佩服的其实并不是Linus无与伦比的编程技术，而佩服他基于技术自由和开放合作的精神。Linus最成功、最壮大的项目都是开源项目，这种强调自由共享和协作精神同共产主义的共享理念有着些许相通之处，这或许与他曾当选芬兰共产党中央委员会委员的父亲Nils Torvalds有关，但是Linus不是一位政治家，他只不过是在他擅长的领域去做他认为正确的事。明辨是非是所有成年人必须学会的一项技能。正如仁慈主义开展各种慈善晚会只是勉强遮掩社会贫困的真实根源一样，有很多事情需要自己的眼睛去看、自己的大脑去想，也没有必要上升到信仰的高度，仅仅做到言行合一，问心无愧已经算是成功。</p>
+<style>
+a {
+  text-decoration: none;
+}
+  </content>
+  
+  
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+ 
+
+    
+</body>
+</html>
