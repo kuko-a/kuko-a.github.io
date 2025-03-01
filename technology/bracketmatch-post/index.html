@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>括号匹配算法的实现&nbsp;|&nbsp;kuko</title>
+<meta
+  name="title"
+  content="括号匹配算法的实现"
+/>
+<meta
+  name="description"
+  content="环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。
+
+功能要求
+在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。
+功能实现
+老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在
+
+
+
+
+
+
+ 1typedef struct Node {
+ 2    char data;        
+ 3    int position;     
+ 4    struct Node* next;
+ 5} Node;
+ 6
+ 7
+ 8typedef struct {
+ 9    Node* top;          
+10} LinkStack;
+有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。
+
+
+
+
+
+
+ 1// 括号匹配算法
+ 2char BracketMatch(char s[], LinkStack* stack)
+ 3 {
+ 4int round=0,square=0,curly=0; 
+ 5for (int i=0;s[i]!=&#39;\0&#39;;i&#43;&#43;)
+ 6{
+ 7char ch=s[i];
+ 8if (ch==&#39;(&#39;||ch==&#39;[&#39;||ch==&#39;{&#39;) 
+ 9{
+10Push(stack, ch,i&#43;1); 
+11} else if (ch==&#39;)&#39;||ch==&#39;]&#39;||ch==&#39;}&#39;) 
+12{
+13if (IsEmpty(stack)) 
+14{
+15return 0; 
+16}
+17Node* topNode=stack-&gt;top;  
+18char topChar=topNode-&gt;data;
+19int topPos=topNode-&gt;position;
+20if ((ch==&#39;)&#39;&amp;&amp;topChar!=&#39;(&#39;)||(ch==&#39;]&#39;&amp;&amp;topChar!=&#39;[&#39;)||(ch==&#39;}&#39;&amp;&amp;topChar!=&#39;{&#39;))
+21{
+22Pop(stack);
+23}
+24Pop(stack);  
+25switch (ch)
+26{
+27case&#39;)&#39;:
+28round&#43;&#43;;
+29break;
+30case &#39;]&#39;:
+31square&#43;&#43;;
+32break;
+33case &#39;}&#39;:
+34curly&#43;&#43;;
+35break;
+36}
+37}
+38}
+39return 1;  
+40}
+在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Shaolong Chen" />
+
+
+
+
+<meta property="og:url" content="https://kuko-a.github.io/technology/bracketmatch-post/">
+  <meta property="og:site_name" content="kuko">
+  <meta property="og:title" content="括号匹配算法的实现">
+  <meta property="og:description" content="环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。
+功能要求 在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。
+功能实现 老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在
+1typedef struct Node { 2 char data; 3 int position; 4 struct Node* next; 5} Node; 6 7 8typedef struct { 9 Node* top; 10} LinkStack; 有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。
+1// 括号匹配算法 2char BracketMatch(char s[], LinkStack* stack) 3 { 4int round=0,square=0,curly=0; 5for (int i=0;s[i]!=&#39;\0&#39;;i&#43;&#43;) 6{ 7char ch=s[i]; 8if (ch==&#39;(&#39;||ch==&#39;[&#39;||ch==&#39;{&#39;) 9{ 10Push(stack, ch,i&#43;1); 11} else if (ch==&#39;)&#39;||ch==&#39;]&#39;||ch==&#39;}&#39;) 12{ 13if (IsEmpty(stack)) 14{ 15return 0; 16} 17Node* topNode=stack-&gt;top; 18char topChar=topNode-&gt;data; 19int topPos=topNode-&gt;position; 20if ((ch==&#39;)&#39;&amp;&amp;topChar!=&#39;(&#39;)||(ch==&#39;]&#39;&amp;&amp;topChar!=&#39;[&#39;)||(ch==&#39;}&#39;&amp;&amp;topChar!=&#39;{&#39;)) 21{ 22Pop(stack); 23} 24Pop(stack); 25switch (ch) 26{ 27case&#39;)&#39;: 28round&#43;&#43;; 29break; 30case &#39;]&#39;: 31square&#43;&#43;; 32break; 33case &#39;}&#39;: 34curly&#43;&#43;; 35break; 36} 37} 38} 39return 1; 40} 在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="technology">
+    <meta property="article:published_time" content="2025-03-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-01T00:00:00+00:00">
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="括号匹配算法的实现">
+  <meta name="twitter:description" content="环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。
+功能要求 在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。
+功能实现 老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在
+1typedef struct Node { 2 char data; 3 int position; 4 struct Node* next; 5} Node; 6 7 8typedef struct { 9 Node* top; 10} LinkStack; 有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。
+1// 括号匹配算法 2char BracketMatch(char s[], LinkStack* stack) 3 { 4int round=0,square=0,curly=0; 5for (int i=0;s[i]!=&#39;\0&#39;;i&#43;&#43;) 6{ 7char ch=s[i]; 8if (ch==&#39;(&#39;||ch==&#39;[&#39;||ch==&#39;{&#39;) 9{ 10Push(stack, ch,i&#43;1); 11} else if (ch==&#39;)&#39;||ch==&#39;]&#39;||ch==&#39;}&#39;) 12{ 13if (IsEmpty(stack)) 14{ 15return 0; 16} 17Node* topNode=stack-&gt;top; 18char topChar=topNode-&gt;data; 19int topPos=topNode-&gt;position; 20if ((ch==&#39;)&#39;&amp;&amp;topChar!=&#39;(&#39;)||(ch==&#39;]&#39;&amp;&amp;topChar!=&#39;[&#39;)||(ch==&#39;}&#39;&amp;&amp;topChar!=&#39;{&#39;)) 21{ 22Pop(stack); 23} 24Pop(stack); 25switch (ch) 26{ 27case&#39;)&#39;: 28round&#43;&#43;; 29break; 30case &#39;]&#39;: 31square&#43;&#43;; 32break; 33case &#39;}&#39;: 34curly&#43;&#43;; 35break; 36} 37} 38} 39return 1; 40} 在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。">
+
+
+
+
+
+  <meta itemprop="name" content="括号匹配算法的实现">
+  <meta itemprop="description" content="环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。
+功能要求 在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。
+功能实现 老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在
+1typedef struct Node { 2 char data; 3 int position; 4 struct Node* next; 5} Node; 6 7 8typedef struct { 9 Node* top; 10} LinkStack; 有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。
+1// 括号匹配算法 2char BracketMatch(char s[], LinkStack* stack) 3 { 4int round=0,square=0,curly=0; 5for (int i=0;s[i]!=&#39;\0&#39;;i&#43;&#43;) 6{ 7char ch=s[i]; 8if (ch==&#39;(&#39;||ch==&#39;[&#39;||ch==&#39;{&#39;) 9{ 10Push(stack, ch,i&#43;1); 11} else if (ch==&#39;)&#39;||ch==&#39;]&#39;||ch==&#39;}&#39;) 12{ 13if (IsEmpty(stack)) 14{ 15return 0; 16} 17Node* topNode=stack-&gt;top; 18char topChar=topNode-&gt;data; 19int topPos=topNode-&gt;position; 20if ((ch==&#39;)&#39;&amp;&amp;topChar!=&#39;(&#39;)||(ch==&#39;]&#39;&amp;&amp;topChar!=&#39;[&#39;)||(ch==&#39;}&#39;&amp;&amp;topChar!=&#39;{&#39;)) 21{ 22Pop(stack); 23} 24Pop(stack); 25switch (ch) 26{ 27case&#39;)&#39;: 28round&#43;&#43;; 29break; 30case &#39;]&#39;: 31square&#43;&#43;; 32break; 33case &#39;}&#39;: 34curly&#43;&#43;; 35break; 36} 37} 38} 39return 1; 40} 在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。">
+  <meta itemprop="datePublished" content="2025-03-01T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-03-01T00:00:00+00:00">
+  <meta itemprop="wordCount" content="98">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    
+    
+    <link href="/bundle.min.css" rel="stylesheet" />
+
+    
+
+    
+      <meta name="fediverse:creator" content="@chensl@mastodon.social" />
+    
+
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >主页</a
+  >
+
+  <a
+    href="/technology/"
+    
+    >技术</a
+  >
+
+  <a
+    href="/life/"
+    
+    >生活</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>括号匹配算法的实现</h1>
+
+
+    </header>
+    <main>
+      
+  
+  
+  <content>
+    <p>环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。</p>
+<hr>
+<h4 id="功能要求">功能要求</h4>
+<p>在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。</p>
+<h4 id="功能实现">功能实现</h4>
+<p>老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#cba6f7">typedef</span> <span style="color:#cba6f7">struct</span> Node {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>    <span style="color:#f38ba8">char</span> data;        
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>    <span style="color:#f38ba8">int</span> position;     
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>    <span style="color:#cba6f7">struct</span> Node<span style="color:#89dceb;font-weight:bold">*</span> next;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>} Node;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#cba6f7">typedef</span> <span style="color:#cba6f7">struct</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>    Node<span style="color:#89dceb;font-weight:bold">*</span> top;          
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>} LinkStack;</span></span></code></pre></div>
+<p>有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">// 括号匹配算法
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">char</span> <span style="color:#89b4fa">BracketMatch</span>(<span style="color:#f38ba8">char</span> s[], LinkStack<span style="color:#89dceb;font-weight:bold">*</span> stack)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#f38ba8">int</span> round<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,square<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,curly<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>; 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;s[i]<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;\0&#39;</span>;i<span style="color:#89dceb;font-weight:bold">++</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#f38ba8">char</span> ch<span style="color:#89dceb;font-weight:bold">=</span>s[i];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#cba6f7">if</span> (ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;(&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;[&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;{&#39;</span>) 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89b4fa">Push</span>(stack, ch,i<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>); 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>} <span style="color:#cba6f7">else</span> <span style="color:#cba6f7">if</span> (ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;)&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;]&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;}&#39;</span>) 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#cba6f7">if</span> (<span style="color:#89b4fa">IsEmpty</span>(stack)) 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>; 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Node<span style="color:#89dceb;font-weight:bold">*</span> topNode<span style="color:#89dceb;font-weight:bold">=</span>stack<span style="color:#89dceb;font-weight:bold">-&gt;</span>top;  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span><span style="color:#f38ba8">char</span> topChar<span style="color:#89dceb;font-weight:bold">=</span>topNode<span style="color:#89dceb;font-weight:bold">-&gt;</span>data;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span><span style="color:#f38ba8">int</span> topPos<span style="color:#89dceb;font-weight:bold">=</span>topNode<span style="color:#89dceb;font-weight:bold">-&gt;</span>position;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#cba6f7">if</span> ((ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;)&#39;</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>topChar<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;(&#39;</span>)<span style="color:#89dceb;font-weight:bold">||</span>(ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;]&#39;</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>topChar<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;[&#39;</span>)<span style="color:#89dceb;font-weight:bold">||</span>(ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;}&#39;</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>topChar<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;{&#39;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span><span style="color:#89b4fa">Pop</span>(stack);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span><span style="color:#89b4fa">Pop</span>(stack);  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span><span style="color:#cba6f7">switch</span> (ch)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span><span style="color:#cba6f7">case</span><span style="color:#a6e3a1">&#39;)&#39;</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>round<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span><span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span><span style="color:#cba6f7">case</span> <span style="color:#a6e3a1">&#39;]&#39;</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>square<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span><span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span><span style="color:#cba6f7">case</span> <span style="color:#a6e3a1">&#39;}&#39;</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>curly<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span><span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">39</span><span><span style="color:#cba6f7">return</span> <span style="color:#fab387">1</span>;  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">40</span><span>}</span></span></code></pre></div>
+<p>在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。</p>
+
+  </content>
+  
+  
+
+    </main>
+    <footer>
+      
+
+  <span>
+    
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+ 
+
+    
+</body>
+</html>

@@ -2,19 +2,166 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>kuko</title>
-    <link>http://localhost:1313/</link>
+    <link>https://kuko-a.github.io/</link>
     <description>Recent content on kuko</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>shaolong.chen@outlook.it (Shaolong Chen)</managingEditor>
     <webMaster>shaolong.chen@outlook.it (Shaolong Chen)</webMaster>
-    <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kuko-a.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>括号匹配算法的实现</title>
+      <link>https://kuko-a.github.io/technology/bracketmatch-post/</link>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
+      <guid>https://kuko-a.github.io/technology/bracketmatch-post/</guid>
+      <description>&lt;p&gt;环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;功能要求&#34;&gt;功能要求&lt;/h4&gt;
+&lt;p&gt;在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。&lt;/p&gt;
+&lt;h4 id=&#34;功能实现&#34;&gt;功能实现&lt;/h4&gt;
+&lt;p&gt;老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在&lt;/p&gt;
+
+
+
+
+
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#cba6f7&#34;&gt;struct&lt;/span&gt; Node {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 2&lt;/span&gt;&lt;span&gt;    &lt;span style=&#34;color:#f38ba8&#34;&gt;char&lt;/span&gt; data;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 3&lt;/span&gt;&lt;span&gt;    &lt;span style=&#34;color:#f38ba8&#34;&gt;int&lt;/span&gt; position;     
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 4&lt;/span&gt;&lt;span&gt;    &lt;span style=&#34;color:#cba6f7&#34;&gt;struct&lt;/span&gt; Node&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;*&lt;/span&gt; next;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 5&lt;/span&gt;&lt;span&gt;} Node;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 6&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 7&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 8&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#cba6f7&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 9&lt;/span&gt;&lt;span&gt;    Node&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;*&lt;/span&gt; top;          
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;10&lt;/span&gt;&lt;span&gt;} LinkStack;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。&lt;/p&gt;
+
+
+
+
+
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#6c7086;font-style:italic&#34;&gt;// 括号匹配算法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 2&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#6c7086;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f38ba8&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#89b4fa&#34;&gt;BracketMatch&lt;/span&gt;(&lt;span style=&#34;color:#f38ba8&#34;&gt;char&lt;/span&gt; s[], LinkStack&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;*&lt;/span&gt; stack)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 3&lt;/span&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 4&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#f38ba8&#34;&gt;int&lt;/span&gt; round&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#fab387&#34;&gt;0&lt;/span&gt;,square&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#fab387&#34;&gt;0&lt;/span&gt;,curly&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#fab387&#34;&gt;0&lt;/span&gt;; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 5&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#f38ba8&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#fab387&#34;&gt;0&lt;/span&gt;;s[i]&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;\0&amp;#39;&lt;/span&gt;;i&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;++&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 6&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 7&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#f38ba8&#34;&gt;char&lt;/span&gt; ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;s[i];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 8&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;if&lt;/span&gt; (ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;(&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;||&lt;/span&gt;ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;[&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;||&lt;/span&gt;ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;{&amp;#39;&lt;/span&gt;) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt; 9&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;10&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#89b4fa&#34;&gt;Push&lt;/span&gt;(stack, ch,i&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#fab387&#34;&gt;1&lt;/span&gt;); 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;11&lt;/span&gt;&lt;span&gt;} &lt;span style=&#34;color:#cba6f7&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#cba6f7&#34;&gt;if&lt;/span&gt; (ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;)&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;||&lt;/span&gt;ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;]&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;||&lt;/span&gt;ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;}&amp;#39;&lt;/span&gt;) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;12&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;13&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#89b4fa&#34;&gt;IsEmpty&lt;/span&gt;(stack)) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;14&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;15&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#fab387&#34;&gt;0&lt;/span&gt;; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;16&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;17&lt;/span&gt;&lt;span&gt;Node&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;*&lt;/span&gt; topNode&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;stack&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;top;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;18&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#f38ba8&#34;&gt;char&lt;/span&gt; topChar&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;topNode&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;19&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#f38ba8&#34;&gt;int&lt;/span&gt; topPos&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;=&lt;/span&gt;topNode&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;position;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;20&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;if&lt;/span&gt; ((ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;)&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;topChar&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;(&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;||&lt;/span&gt;(ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;]&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;topChar&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;[&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;||&lt;/span&gt;(ch&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;topChar&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;{&amp;#39;&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;21&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;22&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#89b4fa&#34;&gt;Pop&lt;/span&gt;(stack);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;23&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;24&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#89b4fa&#34;&gt;Pop&lt;/span&gt;(stack);  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;25&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;switch&lt;/span&gt; (ch)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;26&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;27&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;case&lt;/span&gt;&lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;)&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;28&lt;/span&gt;&lt;span&gt;round&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;29&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;30&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;]&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;31&lt;/span&gt;&lt;span&gt;square&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;32&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;33&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e3a1&#34;&gt;&amp;#39;}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;34&lt;/span&gt;&lt;span&gt;curly&lt;span style=&#34;color:#89dceb;font-weight:bold&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;35&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;36&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;37&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;38&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;39&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#cba6f7&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#fab387&#34;&gt;1&lt;/span&gt;;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c&#34;&gt;40&lt;/span&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>环境会对一个人产生极大的影响。天底下最烂的图书馆也比最顶级的酒吧清净，这篇笔记是我在寝室敲出来的，在共有的生活空间里很难去做一些私人的事情，但是我还是想记录这个问题，因为保持解决问题的热情很重要。如果一味的接收信息会让人丧失思考的能力。</p>
+<hr>
+<h4 id="功能要求">功能要求</h4>
+<p>在程序内输入一段文本，要求检查文本中各类括号的闭合情况。如果左、右不齐全报错，反之提供各类括号的各个位置序对。</p>
+<h4 id="功能实现">功能实现</h4>
+<p>老实说，上学期的数据结构知识已经遗忘了不少，这次的算法实验费了不少功夫，关键在于忘记了建立链栈时的存储结构。链式存储结构的关键在创建指针，在栈操作的实现上也依赖于指针的运用，下面是初始链栈的两个结构体，在</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#cba6f7">typedef</span> <span style="color:#cba6f7">struct</span> Node {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>    <span style="color:#f38ba8">char</span> data;        
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>    <span style="color:#f38ba8">int</span> position;     
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>    <span style="color:#cba6f7">struct</span> Node<span style="color:#89dceb;font-weight:bold">*</span> next;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>} Node;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#cba6f7">typedef</span> <span style="color:#cba6f7">struct</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>    Node<span style="color:#89dceb;font-weight:bold">*</span> top;          
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>} LinkStack;</span></span></code></pre></div>
+<p>有关链栈出栈、入栈、取栈顶元素等操作的代码就省略不写，沿用的是数据结构里的定型文。主要的核心是下面的括号匹配算法，用for循环来遍历所输入的字符串，再用if语句和switch判断所要输出的内容，其中较为关键的点在于出栈pop的时机要放在匹配过程之后，需要在两种情况下同时pop，不能只pop一遍。</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">// 括号匹配算法
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">char</span> <span style="color:#89b4fa">BracketMatch</span>(<span style="color:#f38ba8">char</span> s[], LinkStack<span style="color:#89dceb;font-weight:bold">*</span> stack)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#f38ba8">int</span> round<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,square<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>,curly<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>; 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span><span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">0</span>;s[i]<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;\0&#39;</span>;i<span style="color:#89dceb;font-weight:bold">++</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#f38ba8">char</span> ch<span style="color:#89dceb;font-weight:bold">=</span>s[i];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#cba6f7">if</span> (ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;(&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;[&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;{&#39;</span>) 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span><span style="color:#89b4fa">Push</span>(stack, ch,i<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">1</span>); 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>} <span style="color:#cba6f7">else</span> <span style="color:#cba6f7">if</span> (ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;)&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;]&#39;</span><span style="color:#89dceb;font-weight:bold">||</span>ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;}&#39;</span>) 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span><span style="color:#cba6f7">if</span> (<span style="color:#89b4fa">IsEmpty</span>(stack)) 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>; 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>Node<span style="color:#89dceb;font-weight:bold">*</span> topNode<span style="color:#89dceb;font-weight:bold">=</span>stack<span style="color:#89dceb;font-weight:bold">-&gt;</span>top;  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span><span style="color:#f38ba8">char</span> topChar<span style="color:#89dceb;font-weight:bold">=</span>topNode<span style="color:#89dceb;font-weight:bold">-&gt;</span>data;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span><span style="color:#f38ba8">int</span> topPos<span style="color:#89dceb;font-weight:bold">=</span>topNode<span style="color:#89dceb;font-weight:bold">-&gt;</span>position;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#cba6f7">if</span> ((ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;)&#39;</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>topChar<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;(&#39;</span>)<span style="color:#89dceb;font-weight:bold">||</span>(ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;]&#39;</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>topChar<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;[&#39;</span>)<span style="color:#89dceb;font-weight:bold">||</span>(ch<span style="color:#89dceb;font-weight:bold">==</span><span style="color:#a6e3a1">&#39;}&#39;</span><span style="color:#89dceb;font-weight:bold">&amp;&amp;</span>topChar<span style="color:#89dceb;font-weight:bold">!=</span><span style="color:#a6e3a1">&#39;{&#39;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span><span style="color:#89b4fa">Pop</span>(stack);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span><span style="color:#89b4fa">Pop</span>(stack);  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span><span style="color:#cba6f7">switch</span> (ch)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span><span style="color:#cba6f7">case</span><span style="color:#a6e3a1">&#39;)&#39;</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>round<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span><span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span><span style="color:#cba6f7">case</span> <span style="color:#a6e3a1">&#39;]&#39;</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>square<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span><span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span><span style="color:#cba6f7">case</span> <span style="color:#a6e3a1">&#39;}&#39;</span><span style="color:#89dceb;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>curly<span style="color:#89dceb;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span><span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">38</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">39</span><span><span style="color:#cba6f7">return</span> <span style="color:#fab387">1</span>;  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">40</span><span>}</span></span></code></pre></div>
+<p>在写完之后，我试着给了ai相同的要求去做这个算法功能，不出意外的ai用了不到十秒钟就生成了一大段代码，我运行了ai给的代码完全可行。我不知道有了ai之后还要这种基础的程序员干嘛，好像几周前已经有新闻报道ai程序员已经在某些公司上岗了的消息。这也许是在贩卖焦虑，但是我能感觉到这是种趋势，在这种趋势下，稍微付出努力就可以勉强支撑正常的生活，而要想去从事更为高级的工作也基本不太可能。在这种趋势下去床上睡觉成了最具性价比的事情，我不认同只看性价比的结果主义，与其躺在床上，不如写会儿书法、背几首诗词。</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>持之以恒的勇敢</title>
-      <link>http://localhost:1313/life/fourth-post/</link>
+      <link>https://kuko-a.github.io/life/fourth-post/</link>
       <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/life/fourth-post/</guid>
+      <guid>https://kuko-a.github.io/life/fourth-post/</guid>
       <description>&lt;p&gt;问题的解决引来问题的出现。 &lt;br&gt;
 初步学习了git之后，我又一次检查了github上的远程库，这次我发现了有很多完全不需要的文件存在于库中，类似于“ceshi”、“techology”这样没有任何用的文件夹需要删除。&lt;br&gt;
 hugo生成的public里的文件不会因为本地文件的删除而自己清除，所以这些过程中产生的文件就会留存在工作区中，随着add与commit被上传到github里的远程库中。然而，hugo中的pageref被修改到了正确的路径，所以不必要的文件没有被调用。这些文件没有影响网页的显示，但是确实是冗余文件。在认识了远程库与版本库之间的联系之后，可以轻而易举的发现这些垃圾文件并且进行清理扫除，扫除的过程也很简单，在工程区中删除不必要的文件后再提交至远程库，问题迎刃而解。&lt;/p&gt;
@@ -35,9 +182,9 @@ hugo生成的public里的文件不会因为本地文件的删除而自己清除�
     </item>
     <item>
       <title>初学git</title>
-      <link>http://localhost:1313/technology/git-post/</link>
+      <link>https://kuko-a.github.io/technology/git-post/</link>
       <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/technology/git-post/</guid>
+      <guid>https://kuko-a.github.io/technology/git-post/</guid>
       <description>&lt;h3 id=&#34;写在前面&#34;&gt;写在前面&lt;/h3&gt;
 &lt;p&gt;为了把这个博客托管在github上，我已经了解了一些相应的git用法，github只不过是git的一部分，git适用于目前大部分的工作场景。&lt;a href=&#34;https://git-scm.com/docs&#34;&gt;git&lt;/a&gt;官网上也有着相应的教程，通篇的英文让人难以下手。好在国人写的教程也相当出彩，我这里觉得&lt;a href=&#34;https://liaoxuefeng.com/books/git/introduction/index.html&#34;&gt;廖雪峰&lt;/a&gt;和&lt;a href=&#34;https://www.runoob.com/git/git-tutorial.html&#34;&gt;菜鸟教程&lt;/a&gt;都对初学者很友好，前者引导较好而后者更为直观，互相对照着进行学习是一个好方法。&lt;/p&gt;
 &lt;hr&gt;
@@ -161,9 +308,9 @@ a {
     </item>
     <item>
       <title>markdown语法笔记</title>
-      <link>http://localhost:1313/technology/fourth-post/</link>
+      <link>https://kuko-a.github.io/technology/fourth-post/</link>
       <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/technology/fourth-post/</guid>
+      <guid>https://kuko-a.github.io/technology/fourth-post/</guid>
       <description>&lt;p&gt;markdown现在适用于大部分的场景，而且也没有什么门槛难度，在这里简单的总结一下文法以便于我之后随时可以查阅。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;基础语法&#34;&gt;基础语法&lt;/h2&gt;
@@ -414,9 +561,9 @@ a {
     </item>
     <item>
       <title>对拿来主义的看法</title>
-      <link>http://localhost:1313/life/third-post/</link>
+      <link>https://kuko-a.github.io/life/third-post/</link>
       <pubDate>Sat, 15 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/life/third-post/</guid>
+      <guid>https://kuko-a.github.io/life/third-post/</guid>
       <description>&lt;p&gt;获得想法&amp;ndash;&amp;gt;阅读文本&amp;ndash;&amp;gt;配置环境&amp;ndash;&amp;gt;搬运示例代码&amp;ndash;&amp;gt;修改代码，我陷入了死循环。&lt;/p&gt;
 &lt;h3 id=&#34;拿来主义&#34;&gt;拿来主义&lt;/h3&gt;
 &lt;p&gt;把blog托管在github云端之后，我有了一种如释重负的感觉，好像完成了一个大工程一样。我冷静下来想了想，实际上我什么也没有做。hugo不是我研发的，theme不是我架构的，markdown也是别人的设计的工具，我只是个拿来主义。&lt;br&gt;
@@ -447,9 +594,9 @@ a {
     </item>
     <item>
       <title>个人blog的基本建立</title>
-      <link>http://localhost:1313/life/first-post/</link>
+      <link>https://kuko-a.github.io/life/first-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/life/first-post/</guid>
+      <guid>https://kuko-a.github.io/life/first-post/</guid>
       <description>&lt;h4 id=&#34;写在前面&#34;&gt;写在前面&lt;/h4&gt;
 &lt;p&gt;感谢&lt;a href=&#34;https://blog.yuanji.dev/about/&#34;&gt;Yuanji&amp;rsquo;s Blog&lt;/a&gt;，他给了我建立blog的灵感。&lt;br&gt;
 花了两天时间自己摸索了一下blog的模式，跌跌撞撞的写了点东西，也算是一个新开端。&lt;/p&gt;
@@ -559,9 +706,9 @@ a {
     </item>
     <item>
       <title>关于宅的感受</title>
-      <link>http://localhost:1313/life/second-post/</link>
+      <link>https://kuko-a.github.io/life/second-post/</link>
       <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><author>shaolong.chen@outlook.it (Shaolong Chen)</author>
-      <guid>http://localhost:1313/life/second-post/</guid>
+      <guid>https://kuko-a.github.io/life/second-post/</guid>
       <description>&lt;h3 id=&#34;经历&#34;&gt;经历&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
